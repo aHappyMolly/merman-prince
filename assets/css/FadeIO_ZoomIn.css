@@ -1,0 +1,172 @@
+
+.text-layer {
+  text-align: left;
+  color: white;
+  height: 100vh; /* 讓他撐滿畫面，可視需求調整 */
+  width: 100vw;
+  position: relative; /* 為內部 absolute 提供參考點 */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 若要垂直置中 */
+}
+
+/* 霧狀 Glow*/
+.text-layer p,
+.text-layer h1 {
+  text-shadow: 0 0 4px rgba(255,255,255,0.2), 0 0 10px rgba(255,255,255,0.2);
+}
+
+#heart-section-01 .text-layer {
+  z-index: 120;
+}
+#lang-section-01 .text-layer {
+  z-index: 220;
+}
+
+
+
+
+/* === Fade 區 === */
+
+.phrase-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+.phrase-animate.fade-in {
+  opacity: 1;
+  transform: translateY(-20px);
+  transition: all 1s ease;
+}
+.phrase-animate.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+
+.icon-layer {
+  opacity: 0;
+
+  transition: all 1s ease;
+  position: absolute;
+ 
+  width: 100%;
+  height: 100%;
+
+  /* background-position: center; */
+  transform: translateY(40px);
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_arrow.png');
+  z-index: 104;
+}
+
+
+
+.line {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 完美置中 */
+}
+
+/* 所有 line 都放絕對位置 → 疊在中間 */
+.line-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 完美置中 */
+  /* white-space: pre-line; 保留換行 */
+}
+
+.line-sub {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 完美置中 */
+}
+
+.line.fade-in,
+.line-sub.fade-in,
+.icon-layer {
+  opacity: 1;
+  transform:translate(-50%, -50%) translateY(-20px);
+  transition: all 1s ease;
+}
+.line.fade-out,
+.line-sub.fade-out {
+  opacity: 0;
+  transform:translate(-50%, -50%) translateY(-20px);
+  transition: all 1s ease;
+}
+
+.fade-in-simple {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s ease;
+
+}
+.fade-in-simple.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* === Zoom 區 === */
+
+.background-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: transform 6s ease; /* 只有 zoom 的那層會用到 */
+}
+
+.layer-a {
+  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_background_Bottom.png');
+  z-index: 101;
+}
+
+ /* 要 Zoom 的那層 */
+.layer-b {
+  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_background_M.png');
+  z-index: 102;
+}
+
+.layer-c {
+  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_background_Top.png');
+  z-index: 103;
+}
+
+
+
+
+
+/* Zoom 動畫觸發後會加的 class */
+.zoom-layer.zoom-in-01 { transform: scale(2.5); }
+.zoom-layer.zoom-in-02 { transform: scale(35.0); }
+
+.zoom-layer.fade-out {
+  opacity: 0;
+  transition: all 8s ease;
+}
+
+
+
+
+
+

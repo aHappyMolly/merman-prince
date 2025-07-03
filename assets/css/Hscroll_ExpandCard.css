@@ -1,0 +1,620 @@
+
+/* ================================
+    ▶ Swiper Custom Style Override
+   ================================ */
+
+
+
+.section-scroll-horizontal {
+  height:  100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #111111b4;
+  padding: 2rem;
+  scroll-snap-align: start;
+}
+
+.swiper {
+  width: 100%;
+  height: 80%;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  text-align: left;
+  position: relative;
+
+  font-size: 1.3em;
+  line-height: 1.5;
+  color: white;
+  padding: 1.5em;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.slide-content {
+  position: relative;
+  /* max-width: 80%; */
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+  padding: 5%;
+  font-size: large;
+}
+
+.title-pair {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+  position: relative;
+}
+
+
+.title-pair .en-title {
+  font-size: 2em;
+  font-weight: bold;
+}
+.title-pair .zh-title {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
+/* info icon base */
+.info-icon {
+  position: absolute;
+  bottom: 70px;
+  right: 70px;
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  color: #000;
+  font-size: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  font-weight: bold;
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+.info-icon:hover {
+background: rgba(0, 0, 0, 0.8);
+color: white;
+  transition: 0.3s;
+}
+
+.info-icon:hover::after {
+  content: attr(data-info);
+  position: absolute;
+  bottom: 125%;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 0.8em;
+
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.info-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 80%;
+  max-height: 80%;
+
+  background-color: rgba(20, 20, 20, 0.88);
+  color: white;
+  padding: 2em;
+  border-radius: 8px;
+  font-size: 0.9em;
+  line-height: 1.4;
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+  overflow-y: auto;
+  z-index: 999;
+
+  transition: opacity 0.3s ease;
+}
+
+
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
+/* 🔧 改變箭頭顏色 / 尺寸 */
+.swiper-button-next,
+.swiper-button-prev {
+  color: whitesmoke !important;
+  font-size: 2rem !important;
+  cursor: pointer;
+}
+
+
+/* 🔧 改分頁點點樣式 */
+.swiper-pagination-bullet {
+  background-color: black;
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  opacity: 1;
+}
+
+
+
+/* ===================
+    ▶ Flip-card Style
+   =================== */
+
+   
+
+/* 外層容器 */
+.flip-card-container,
+.expand-card-container  {
+  perspective: 1000px;
+  width: 300px;
+  height: 400px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* 卡片翻轉核心 */
+.flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /*指示元素的子元素應定位在 3D 空間*/
+  transform-origin: center center; /* ✅ 原地旋轉 */
+}
+
+/* Hover 時觸發翻轉 */
+.flip-card-container:hover .flip-card {
+  transform: rotateY(180deg);
+}
+
+/* 滑過時卡片微微放大 */
+.flip-card-container:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+
+
+/* 正反面樣式 */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center; /* 垂直置中 */
+  align-items: center; /* 水平置中 */
+  border: 1px solid #ccc;
+  background: #222;
+  border-radius: 12px;
+  padding: 1.5em; /* 元素的內邊距，其大小等於元素字體大小的1.5 倍*/
+  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+  text-align: center;
+  flex-direction: column; /* 上下排列 */
+  font-size: 2rem !important
+}
+
+/* 背面翻轉 */
+.card-back {
+  transform: rotateY(180deg);
+}
+
+
+
+
+/* 卡片英文字 */
+.flip-card h2 {
+  font-size: 1.2rem; /*相對單位，為每個元素透過「倍數」乘以根元素的px 值 */
+  margin-bottom: 0.3em;
+}
+
+/* 卡片中文字 */
+.flip-card h3 {
+  font-size: 1rem;
+  color: #aaa;
+}
+.flip-card p {
+  font-size: 0.95rem;
+  color: #ddd;
+  line-height: 1.5;
+  text-align: left;
+}
+
+
+/* ==========================
+    ▶ hover-swap(card) Style
+   ========================== */
+
+.hover-swap-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+}
+
+.hover-swap-card p {
+  font-size: 0.95rem;
+ 
+  line-height: 1.5;
+  text-align: left;
+}
+
+
+
+/* 正反面樣式 */
+.hover-swap-card .before,
+.hover-swap-card .after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center; /* 垂直置中 */
+  align-items: center; /* 水平置中 */
+  border: 1px solid #ccc;
+  background: #222;
+  border-radius: 12px;
+  padding: 1.5em; /* 元素的內邊距，其大小等於元素字體大小的1.5 倍*/
+  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+  text-align: center;
+  flex-direction: column; /* 上下排列 */
+  font-size: 20px
+}
+
+
+
+.expand-line {
+  cursor: pointer;
+}
+
+.expand-line:hover {
+ transform: scale(1.1);
+}
+
+/* 展開內容 */
+.card-expand {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: white;
+  border: 2px solid #333;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+
+  transition: transform 0.3s ease;
+
+  background-color: #333;
+  opacity: 0.9;
+}
+.hidden {
+  display: none;
+}
+
+
+.expand-content {
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  bottom: 1rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.fancy-close {
+  all: unset;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #666;
+  font-weight: bold;
+  margin-top: 1.5em;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: color 0.3s ease, transform 0.3s ease;
+  
+  /* 背景透明圓圈加強美感 */
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  padding: 6px 6px;
+}
+
+.fancy-close:hover {
+  color: #000;
+  transform: scale(1.2);
+}
+
+
+
+
+
+
+
+/* ==============
+    ▶ 一疊卡卡區
+   ============== */
+
+
+.card-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.expandable-card {
+  position: relative;
+  width: 180px;
+  
+  transition: transform 0.3s;
+}
+.card-preview {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  width: 200px;
+  height: 300px;
+}
+
+
+.card-preview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 1em;
+}
+.card-preview:hover {
+  transform: translateY(-6px);
+  cursor: pointer;
+}
+.card-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+  padding: 0.3em;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.card-preview:hover .card-caption {
+  opacity: 1;
+}
+
+
+/* 展開後區域外圍刷黑 */
+.card-expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.card-expanded.hidden {
+  display: none;
+}
+
+
+/* 展開主內容 */
+.expanded-content {
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  width: 80%;
+  height: 80%;
+  background: white;
+  color: #000;
+  border: 2px solid #333;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+  padding: 0;
+
+}
+.expanded-content .swiper {
+  width: 100%;
+  height: 100%;
+}
+.info-button, .close-button {
+  position: absolute;
+  bottom: 1em;
+  width: 2em;
+  height: 2em;
+  background: #2d2d2daf;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+.info-button {
+  right: 3em;
+}
+.close-button {
+  right: 1em;
+}
+
+.close-button:hover {
+  background: #2a2a2aaf;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.expanded-content .Align-content {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  height: 100%;
+  width: 80%;
+}
+
+
+
+
+/* 未完成版 */
+
+/* 整體大卡片視窗背景
+.card-expanded {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90vw;
+  height: 90vh;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.189);
+}
+
+/* 內部白色卡片區塊 */
+/* .expanded-content {
+  position: relative;
+  width: 80%;
+  max-width: 960px;
+  background-color: #050505d9;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+}
+
+.swiper-slide img {
+  max-width: 320px;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+} */
+
+
+/* info 按鈕 */
+/* .info-button {
+  position: absolute;
+  top: 1rem;
+  right: 3rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.info-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+} */
+
+/* close 按鈕 */
+/* .close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.close-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+} */ 
+
+
+
+
+
+/* Swiper 每一頁 */
+/* .swiper-slide {
+  text-align: center;
+  color: #e0e0f0;
+  font-size: 1.1rem;
+  background-color: transparent;
+    width: 100%;
+  height: 100%;
+} */
+
+/* 分頁點點
+.swiper-pagination-bullet {
+  background-color: #777;
+  opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+  background-color: #fff;
+  opacity: 1;
+}
+
+/* 箭頭按鈕 */
+/* .swiper-button-prev,
+.swiper-button-next {
+  color: #ccc;
+  transition: color 0.3s;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #fff;
+} */ 

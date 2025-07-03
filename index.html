@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index Universe Entrance</title>
+  <link rel="stylesheet" href="assets/css/index.css" />
+
+  <!-- Firebase SDKs（一定要照順序）-->
+  <!-- Firebase v8（舊版） -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Firebase Init -->
+  <script src="assets/js/firebase-init.js"></script>
+</head>
+
+<body>
+
+  <!-- 控制按鈕入口（預設極低透明度，hover 顯現） -->
+  <!-- <div class="observer-control-trigger" title="Open Controls">⋮</div> -->
+
+  <!-- 控制面板（預設隱藏） -->
+  <!-- <div class="observer-control-panel hidden">
+    <button id="btn-pause">⏸ Pause</button>
+    <button id="btn-play">▶️ Play</button>
+    <button id="btn-restart">🔁 Restart</button>
+    <label>
+      🔄 Speed:
+      <select id="playback-speed">
+        <option value="1">x1</option>
+        <option value="1.5">x1.5</option>
+        <option value="2">x2</option>
+      </select>
+    </label>
+  </div> -->
+
+
+  <div class="video-container">
+
+    <video id="introVideo" autoplay muted playsinline onended="showEulerButton()" >
+      <source src="assets/vedio/index/00_入口動畫.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- 蓋在影片上的靜態結尾圖像 -->
+    <div id="euler-click-layer">
+      <div class="center-click-zone" onclick="location.href='main.html'">
+        <img src="assets/img/index/Euler_單線.png" alt="Euler Portrait" class="euler-img" />
+        <div class="tooltip-text">Click to talk with Euler</div>
+      </div>
+    </div>
+  
+  </div>
+
+  
+  <div class="z-group-800 z-group hidden" style="z-index: 800">
+        <!-- 🚀 前往主宇宙按鈕 -->
+        <a href="main.html" class="go-main-button">Skip</a>
+  </div>
+
+
+  
+  <!-- 🔧 JS 腳本導入區 -->
+  <script src="assets/js/index.js" defer></script>
+
+  <script src="assets/js/session.js"></script>
+  <script src="assets/js/firebase-init.js"></script>
+  <!-- <script src="assets/js/你的記錄操作.js"></script> -->
+  <script src="assets/js/track.js"></script>
+
+</body>
+</html>

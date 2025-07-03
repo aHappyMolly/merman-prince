@@ -1,0 +1,1923 @@
+<!-- main.html 架構骨架：Z-index 分層對應設計 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>展示站 · 宇宙頁</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/css/Hscroll_ExpandCard.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/css/FadeIO_ZoomIn.css" />
+  <link rel="stylesheet" href="assets/css/cardVedio.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&family=Playfair+Display&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap">
+
+  <!-- Firebase SDKs（一定要照順序）-->
+  <!-- Firebase v8（舊版） -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Firebase Init -->
+  <script src="assets/js/firebase-init.js"></script>
+</head>
+<body>
+
+  <!-- 🔁 全域 UI 固定浮動元件（z-index: 700~899） -->
+  <div id="floaticon">
+        
+    <!-- 工具箱、碎片、語義展示 -->
+    <div id="toolbar" style="z-index: 800">
+        <!-- 工具箱 ICON（右下角） -->
+        <div id="toolbox-icon">
+            🧰
+        </div>
+        
+        <!-- 工具箱內容 -->
+        <div id="toolbox-panel" class="hidden">
+            <div>🔍 已蒐集組合代號：</div>
+            <ul id="combo-list" style="margin: 5px 0 0 10px; padding: 0;"></ul>
+        </div>
+    </div>
+
+
+    <!-- 人物等級 / 頭銜圖示 -->
+    <div id="levelBadge" style="z-index: 800">
+        <!-- 使用者等級 ICON（左上角） -->
+        <div id="level-icon">
+            🏛️
+        </div>
+        
+        <!-- 使用者等級詳細內容（點擊展開） -->
+        <div id="level-panel" class="hidden">
+            <!-- <div id="level-title">目前頭銜：尚未蒐集</div>
+            <div id="level-explanation">蒐集碎片以解鎖個人語言路徑等級。</div> -->
+        </div>       
+    </div>
+    
+
+    <div id="navbar" style="z-index: 799">
+      <span id="pageIndicator"> indicator </span>
+      <!-- 導航欄 -->
+    </div>
+
+  </div>
+  
+
+
+
+
+  <!-- 🪐 起源頁（z-index: 100~199） -->
+  <div class="z-group z-group-100 hidden" style="z-index: 100">
+    <div class="heart-scroll-container">
+      <section class="section-block animate-on-visible" id="heart-section-01"  data-animation="heart-lines">
+
+        <!-- 背景層 A：最底，靜止 -->
+        <div class="background-layer layer-a"></div>
+
+        <!-- 背景層 B：中層，ZoomIn -->
+        <div class="background-layer layer-b zoom-layer"></div>
+
+        <!-- 背景層 C：最上，靜止 -->
+        <div class="background-layer layer-c"></div>
+
+        <!-- 圖案層 d：箭頭圖示，FadeIn -->
+        <div class="icon-layer"></div>
+
+
+        <!-- 文字層 -->
+        <div class="text-layer">
+            <h1 class="line" id="line1">Welcome to Origin</h1>
+
+            <p class="line" id="line2">
+              Sometimes, stories walk in on their own.<br>
+              Sometimes, someone quietly drags you in.
+            </p>
+
+            <div class="line-group" id="line3">
+              <p class="line-sub" id="line3-1">
+                All of this—<br>
+                began with a jerk.<br>
+                pushed forward by a trip I agreed to casually.
+              </p>
+              <p class="line-sub" id="line3-2">
+                And so,<br>
+                I took the hand of Language.
+              </p>
+              <p class="line-sub" id="line3-3">
+                And then—<br>
+                Welcome.
+              </p>
+            </div> 
+          </div>
+            
+      </section>
+      
+      
+      <section class="section-block" id="heart-section-02">
+        <p>A sealed trial disguised as a gift.</p>
+      </section>
+      
+      <section class="section-scroll-horizontal" id="heart-section-03">
+        <div class="swiper">
+
+          <div class="swiper-wrapper">
+            <!-- 封面 -->
+            <div class="swiper-slide"  id="Ojwp-cover">
+                <div class="info-icon">i</div>
+            </div>
+
+            <!-- Page 1 ~ 3 -->
+            <div class="swiper-slide"  id="Ojwp-01">
+              <div class="slide-content">
+                So, there’s a date<br>
+                full of expectations and preparations.<br>
+                But─ the prince just disappeared without a word the day before.<br>
+                So,<br>
+                How should I deal with the cute letter now?
+              </div>
+            </div>
+
+            <div class="swiper-slide" id="Ojwp-02">
+              <div class="slide-content">
+                <div class="hover-swap-word" id="Ojwp-Option-A">
+                  <span class="before">→ A. Tear it Apart.</span>
+                  <span class="after">→ A. Indignantly 🤬</span>
+                </div>
+                
+                <div class="hover-swap-word" id="Ojwp-Option-B">
+                  <span class="before">→ B. Hand it Over.</span>
+                  <span class="after">→ B. Pathetically 🤡</span>
+                </div>
+                
+                <div class="hover-swap-word" id="Ojwp-Option-C">
+                  <span class="before">→ C. Make it Interesting :3</span>
+                  <span class="after">→ C. Sincerely 😏</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="swiper-slide" id="Ojwp-03">
+              <div class="Module-area">
+
+                <div class="expand-card-complete"
+                     id="heart-section-03-card1"
+                     style="top: 2%; left: 2%;">
+                  <!-- 點擊物 -->
+                  <div class="expand-line-container">
+                    <div class="expand-line">
+                      <div class="title">
+                          01 <br>
+                          Semantic Obfuscation Techniques
+                      </div>
+                      <br>
+                      <span>"Tu esr Ojwp" = "You are Jerk :3"</span>
+                    </div>      
+                  </div>
+
+                  <!-- 展開內容（預設隱藏） -->
+                  <div class="card-expand hidden">
+                    <div class="expand-content">
+                      <h2>01<br>
+                          Cross-Lingual Obfuscation & Semantic Misdirection
+                      </h2>
+                      <p>
+                        <b>😏 "Tú esr Ojwp" = "You are Jerk :3"</b><br>
+                        •	Cross-linguistic misdirection (Chinese → Spanish → English)<br>
+                        •	Caesar Cipher with historical-cultural embedding<br>
+                        •	Specific timing offset (encoded according to significant dates/events)<br>
+                        •	Misspell-like encryption strategy<br>
+                        •	Uppercase/lowercase cue triggers<br>
+                      </p>                     
+                      <p>
+                        <b>✨ Ta-daa~</b><br>
+                        ✦ Cross-lingual semantic distortion<br>
+                        ✦ Contextual cipher embedding<br>
+                        ✦ Cognitive dissonance triggers<br>
+                        ✦ Script-based prompt scrambling<br>
+                      </p>
+                      <!-- 小叉叉 -->
+                      <button class="close-expand fancy-close"> &thinsp; × &thinsp; </button>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="expand-card-complete"
+                     id="heart-section-03-card2"
+                     style="bottom: 2%; left: 2%;">
+                  <!-- 點擊物 -->
+                  <div class="expand-line-container">
+                    <div class="expand-line">
+                      <div class="title">
+                          02 <br>
+                          Narrative Prompt Dynamics
+                      </div>
+                      <br>
+                      <span>A love letter? Or a silent trial?</span>
+                    </div>      
+                  </div>
+
+                  <!-- 展開內容（預設隱藏） -->
+                  <div class="card-expand hidden">
+                    <div class="expand-content">
+                      <h2>02<br>
+                          Tone-Sensitive Prompt Inversion & Reader-Centric Branching
+                      </h2>
+                      <p>
+                        <b>😏 The meaning shifts based on the reader’s stance.</b><br>
+                        •	Teasing or Mockery<br>
+                        •	Gratitude or Curse<br>
+                        •	Sincere or Manipulative tone<br>
+                        •	Friend or Lover<br>
+                        •	Cutie or Jerk<br>
+                      </p>
+                      <p>
+                        <b>✨ Ta-daa~</b><br>
+                        ✦ Narrative inversion structures<br>
+                        ✦ Reader-dependent prompt branching<br>
+                        ✦ Adversarial tone alignment<br>
+                        ✦ Multifaceted identity embeddingk<br>
+                      </p>
+                      <!-- 小叉叉 -->
+                      <button class="close-expand fancy-close"> &thinsp; × &thinsp; </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="expand-card-complete"
+                     id="heart-section-03-card3"
+                     style="top: 2%; right: 2%;">
+                  <!-- 點擊物 -->
+                  <div class="expand-line-container">
+                    <div class="expand-line">
+                      <div class="title">
+                          03 <br>
+                          Multimodal Memory Triggers
+                      </div>
+                      <br>
+                      <span>The perfume I wore that day...</span>
+                    </div>      
+                  </div>
+
+                  <!-- 展開內容（預設隱藏） -->
+                  <div class="card-expand hidden">
+                    <div class="expand-content">
+                      <h2>03<br>
+                          Multimodal Anchoring for Emotional Recall
+                      </h2>
+                      <p>
+                        <b>😏 The perfume I wore that day...</b><br>
+                        •	A mysterious number system (curiosity trigger)<br>
+                        •	The perfume I wore that day (olfactory recall)<br>
+                        •	Visual signature of the moment (sketched memory from that exact time)<br>
+                        •	Paper texture, color tone, layout, and handwritten script<br>
+                        (used as tactile/visual carriers for emotional priming)<br>
+                      </p> 
+                      <p>
+                        <b>✨ Ta-daa~</b><br>
+                        ✦ Temporal signature anchoring<br>
+                        ✦ Multisensory prompt layering<br>
+                        ✦ Deferred cognitive retrieval<br>
+                        ✦ Affective encoding<br>
+                      </p>
+                      <!-- 小叉叉 -->
+                      <button class="close-expand fancy-close"> &thinsp; × &thinsp; </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="expand-card-complete"
+                     id="heart-section-03-card4"
+                     style="bottom: 2%; right: 2%;">
+                  <!-- 點擊物 -->
+                  <div class="expand-line-container">
+                    <div class="expand-line">
+                      <div class="title">
+                          04 <br>
+                          LLM Adversarial Challenge Design
+                      </div>
+                      <br>
+                      <span>Initially unsolvable—then solvable.</span>
+                    </div>      
+                  </div>
+
+                  <!-- 展開內容（預設隱藏） -->
+                  <div class="card-expand hidden">
+                    <div class="expand-content">
+                      <h2>04<br>
+                          Contextual Adversarial Prompting for LLMs
+                      </h2>
+                      <p>
+                        <b>😏 Initially unsolvable—then solvable.</b><br>
+                        •	Initially unsolvable by GPT<br>
+                        •	Becomes solvable only after contextual buildup<br>
+                        •	Combines “semantic maze” + “prosody misdirection” to form a structured challenge point<br>
+                      </p>
+                      <p>
+                        <b>✨ Ta-daa~</b><br>
+                        ✦ Adversarial prompt design<br>
+                        ✦ Context-locked semantic decoding<br>
+                        ✦ Intentional ambiguity framing<br>
+                        ✦ LLM misinterpretation traps<br>
+                      </p>
+                      <!-- 小叉叉 -->
+                      <button class="close-expand fancy-close"> &thinsp; × &thinsp; </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 封底 -->
+            <div class="swiper-slide" id="Ojwp-04">
+              <div class="slide-content">
+                It's designed to be misunderstood <br>
+                ─until it isn't.
+              </div>
+              <div class="info-icon" id="Ojwp-download">i</div>
+            </div>
+
+          </div>
+
+          <!-- 分頁點點 -->
+          <div class="swiper-pagination"></div>
+          <!-- 左右箭頭 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>         
+        </div>
+      </section>
+
+
+      <section class="section-block" id="heart-section-04">
+         <p>
+          This is where I stopped spiraling like a girl in love.<br>
+          And started to waltz with my feelings,<br>
+          in my finest heels —Language.
+         </p>
+      </section>
+
+      <section class="section-scroll-horizontal" id="heart-section-05">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- 封面 -->
+            <div class="swiper-slide">
+                <div class="title-pair">
+                  <div class="en-title">The Merman Prince</div>
+                  <div class="zh-title">《 人魚王子 》</div>
+                </div>
+                <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="heart-section-05-Page5-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-05-Page5-info">
+                <div class="popup-content" style="text-align: center;">
+                  <h3>
+                  Where we met is the Origin<br>
+                  ─ of a Universe
+                  </h3>
+                  <p>
+                  我們相遇是起點<br>
+                  一個宇宙的起點
+                  </p>
+                </div>
+              </div> 
+            </div>
+
+            <!-- Page 1 ~ 5 -->
+            <div class="swiper-slide" id="Prince-01">
+              <div class="slide-content">
+              That day, amid the sea of people,<br>
+              I met the merman prince from my dreams.<br>
+              I didn’t know if I was just another ordinary fish in his deep blue kingdom,<br>
+              or the single pearl the tide never managed to swallow.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="heart-section-05-Page1-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-05-Page1-info">
+                <div class="popup-content">
+                  <h2 style="
+                      border-left: 3px solid #b9b9b9;
+                      padding-left: 20px;
+                      margin-left: 4px;
+                      line-height: 1.4;
+                      font-weight: 600;
+                      ">01<br>
+                      Narrative Ambiguity Initiation：<br>
+                      Role Fluidity × Cognitive Uncertainty Module
+                  </h2>
+                  <p>
+                    <b>😗 Function</b><br>
+                    Establishes a narrative space where the boundary between self and other becomes intentionally blurred,<br>
+                    guiding the reader into a quasi-psychological-test-like interpretive process.<br>
+                  </p>
+                  <p>
+                    <b>✨ Ta-daa~</b><br>
+                    ✦ Focalization Blending / Multiperspectivity<br>
+                    ✦ Unreliable Narrator / Role Uncertainty<br>
+                  </p>
+                  <p>
+                    <b>🔎 Metaphorical Links</b><br>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Metaphor</th><th>Narrative Function</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Sea of people</td><td>Establishes the contextual field; evokes vastness and disorientation, laying the metaphorical groundwork for the “merfolk system”</td></tr>
+                        <tr><td>Merman prince from my dreams</td><td>Idealized projection of the other; water symbolism ties to his identity and the projection of personal preference</td></tr>
+                        <tr><td>Ordinary fish</td><td>The narrator’s self-positioning as the “insignificant other,” while embedding a dual-layered “fishpond” metaphor (he may be special or just another)</td></tr>
+                        <tr><td>Pearl</td><td>Refined symbol of self: purity × elegance × rarity, serves as the emotional-value anchor of the narrative</td></tr>
+                        <tr><td>Deep blue kingdom</td><td>Constructs the emotional landscape: symbolizes the other’s inner depth + stable, intelligent emotional tone</td></tr>
+                      </tbody>
+                    </table>
+                      
+                    <!-- 切換語言按鈕 -->
+                    <!-- <button class="toggle-btn" onclick="toggleLang()">切換為英文</button> -->
+                    <!-- 表格區塊 -->
+                    <!-- <div id="tableWrapper" class="show-zh">
+                      <table>
+                        <tr>
+                          <th><span class="lang-zh">比喻元素</span><span class="lang-en">Symbol</span></th>
+                          <th><span class="lang-zh">敘事作用</span><span class="lang-en">Narrative Role</span></th>
+                        </tr>
+                        <tr>
+                          <td><span class="lang-zh">人海</span><span class="lang-en">Sea of People</span></td>
+                          <td><span class="lang-zh">建立情境場域，對應海與茫然感，為人魚系統鋪墊隱喻基礎</span>
+                              <span class="lang-en">Sets a vague ambient scene—sea = confusion; preps mermaid allegory base</span></td>
+                        </tr>
+                        更多 rows...
+                      </table>
+                    </div> -->
+                  </p>
+                </div>
+              </div> 
+            </div>
+
+            <div class="swiper-slide" id="Prince-02">
+              <div class="slide-content">
+              I feared the bottomless of his indigo ——<br>
+              yet as if on purpose, he dived and whispered beneath the abyss at the last rising moon,<br>
+              just like that<br>
+              hiding in the stillness that I loved him most<br>
+              and stirred gently.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="heart-section-05-Page2-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-05-Page2-info">
+                <div class="popup-content">
+                  <h2 style="
+                      border-left: 3px solid #b9b9b9;
+                      padding-left: 20px;
+                      margin-left: 4px;
+                      line-height: 1.4;
+                      font-weight: 600;
+                      ">02<br>
+                      Emotional Threshold：<br>
+                      Triggered Affection × Passive Language Modulation
+                  </h2>
+                  <p>
+                    <b>😗 Function</b><br>
+                    Language has not yet become a tool of control—it remains a vessel steered by emotion.<br>
+                    It is precisely this tension that ignites my desire to reclaim agency through language.
+                  </p>
+                  <p>
+                    <b>✨ Ta-daa~</b><br>
+                    ✦ Affective Saturation / Emotional Overload<br>
+                    ✦ Expressive vs Instrumental Language Use<br>
+                  </p>
+                  <p>
+                    <b>🔎 Metaphorical Links</b><br>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Metaphor</th><th>Narrative Function</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>The bottomless of his indigo</td><td>The sea of the merman = the unknowability of his inner world</td></tr>
+                        <tr><td>Yet as if on purpose</td><td>Emotional ambiguity; implies hurt but preserves the possibility of his innocence</td></tr>
+                        <tr><td>Dived</td><td>Disappearance / unread messages</td></tr>
+                        <tr><td>whispered</td><td>He’s silent to me, yet still posts on social media</td></tr>
+                        <tr><td>Last rising moon</td><td>The moment before silence began = last twilight before our date</td></tr>
+                        <tr><td>The stillness that I loved him most</td><td>Annoying quietness (ignoring me) × also admired calmness(charisma)</td></tr>
+                        <tr><td>Stirred</td><td>The emotional trigger—his post nudging my reaction</td></tr>
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div> 
+
+            </div>
+
+            <div class="swiper-slide" id="Prince-03">
+              <div class="slide-content">
+              So─ I picked up the witch’s hat<br>
+              and put on my most elegant dress on.<br>
+              Beneath the moon,<br>
+              I lifted my pen and signed the pact with Ursula.<br>
+              I couldn’t speak—<br>
+              but I handed over the promise that full of my truest heart ,with a smile.
+              </div>   
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="heart-section-05-Page3-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-05-Page3-info">
+                <div class="popup-content">
+                  <h2 style="
+                      border-left: 3px solid #b9b9b9;
+                      padding-left: 20px;
+                      margin-left: 4px;
+                      line-height: 1.4;
+                      font-weight: 600;
+                      ">03<br>
+                      Language Invocation Rite：<br>
+                      Contract Genesis × Will Activation Module
+                  </h2>
+                  <p>
+                    <b>😗 Function</b><br>
+                    Establishes a narrative space where the boundary between self and other becomes intentionally blurred,<br>
+                    guiding the reader into a quasi-psychological-test-like interpretive process.<br>
+                  </p>
+                  <p>
+                    <b>✨ Ta-daa~</b><br>
+                    ✦ Focalization Blending / Multiperspectivity<br>
+                    ✦ Unreliable Narrator / Role Uncertainty<br>
+                  </p>
+                  <p>
+                    <b>🔎 Metaphorical Links</b><br>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Metaphor</th><th>Narrative Function</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Picked up</td><td>A calm, deliberate gesture; initiating the act with agency</td></tr>
+                        <tr><td>Witch’s hat</td><td>Unstated identity—could be mine, or Ursula’s (a family figure); misleads the reader to assume malice</td></tr>
+                        <tr><td>Hat</td><td>A personal symbol of style and identity; acknowledged by him in real life</td></tr>
+                        <tr><td>Put on</td><td>Reclaiming self-worth; no longer chasing the prince</td></tr>
+                        <tr><td>Dress</td><td>Real-life fashion choice; hints at Ariel but used to invert that role</td></tr>
+                        <tr><td>Beneath the moon</td><td>Refers to the night I wrote it; invokes the Ojwp card’s lunar cipher and silent emotional channeling </td></tr>
+                        <tr><td>Lifted my pen</td><td>The act of raising as a metaphor for lifting one’s resolve</td></tr>
+                        <tr><td>Signed</td><td>The act of laying down a vow; solidifying intention</td></tr>
+                        <tr><td>The pact</td><td>Setting boundaries; a pact with self not to fall recklessly</td></tr>
+                        <tr><td>Ursula</td><td>Reframed as a protective sister, not villain; aligns with familial support</td></tr>
+                        <tr><td>Couldn’t speak</td><td>Loss of voice = lack of entitlement to ask; also echoes the mermaid tale’s curse</td></tr>
+                        <tr><td>The promise</td><td>Both a gift and a guard: a test of his sincerity, and a shield for my heart</td></tr>                
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div>         
+            </div>
+
+            <div class="swiper-slide" id="Prince-04">
+              <div class="slide-content">
+              As long as you are willing to reach out,<br>
+              you’ll find the whole sky of brilliance I prepared for you.<br>
+              But if you weren’t true,<br>
+              then the next time you look up—<br>
+              all you’ll see is the sky she sealed forever,<br>
+              where no stars shine for you again.<br>
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="heart-section-05-Page4-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-05-Page4-info">
+                <div class="popup-content">
+                  <h2 style="
+                      border-left: 3px solid #b9b9b9;
+                      padding-left: 20px;
+                      margin-left: 4px;
+                      line-height: 1.4;
+                      font-weight: 600;
+                      ">04<br>
+                      Sentence-as-Judgement Structure：<br>
+                      Conditional Trial × Feedback Design Module
+                  </h2>
+                  <p>
+                    <b>😗 Function</b><br>
+                    Language is structured as a suspended judgment—each phrase becomes a conditional gate.<br>
+                    Emotion becomes input; punishment becomes triggered response.<br>
+                    This segment encodes a syntax of consequence.<br>
+                  </p>
+                  <p>
+                    <b>✨ Ta-daa~</b><br>
+                    ✦ Semantic Bait / Framing Trap / Garden-path Sentence<br>
+                    ✦ Affective Conditionality / If-Then Emotional Logic<br>
+                    ✦ Affective Feedback Systems / Interactive Narrative Loop<br>
+                  </p>
+                  <p>
+                    <b>🔎 Metaphorical Links</b><br>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Metaphor</th><th>Narrative Function</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Reach out</td><td>Since the merman is in the sea, and the moon lies above the surface, it’s directly overhead—within reach</td></tr>
+                        <tr><td>Whole sky of brilliance</td><td>Represents all of me, and all I was willing to give</td></tr>
+                        <tr><td>Weren’t true</td><td>Forgetting our details = inability to decrypt the card; truth must be earned</td></tr>
+                        <tr><td>She (Artemis)</td><td>Moon goddess with judgmental power (chosen over gentler lunar goddesses); evokes agency, not weakness</td></tr>
+                        <tr><td>The sky she sealed forever,...</td><td>The “curse” if he fails: my light becomes shadow—he’ll never find someone brighter than me again</td></tr>
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div> 
+            </div>
+
+            <div class="swiper-slide animate-on-visible" id="Prince-05" data-animation="phrase-series">
+              <div class="slide-content">
+                <p class="phrase-animate" id="phrase1">
+                  I’m not the little fish. I’m not the pearl.<br>
+                  I’m not the princess waiting to be saved.<br>
+                  I’m Mona—<br>
+                  the one who held that pearl between her teeth,<br>
+                  and became the little fish by choice.
+                </p>
+
+                <p class="phrase-animate" id="phrase2">
+                  You thought Ursula is the villain<br>
+                  I did sign that pact with her in full sincerity.<br>
+                  But have you ever wondered—<br>
+                  what if I were her sister?<br>
+                  Or—<br>
+                  what if I was the one who wrote the whole curse?
+                </p>
+
+                <!-- <p class="phrase-animate" id="phrase3">
+                  And what about it, thank you for your applause.<br>
+                  I live like this on purpose.<br>
+                  You thought I wanted to be the princess.<br>
+                  I am always the prettier witch.
+                </p> -->
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="heart-section-05-Page5-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-05-Page5-info">
+                <div class="popup-content">
+                  <h2 style="
+                      border-left: 3px solid #b9b9b9;
+                      padding-left: 20px;
+                      margin-left: 4px;
+                      line-height: 1.4;
+                      font-weight: 600;
+                      ">05<br>
+                      Identity Reclamation：<br>
+                      Symbolic Role Transfer × Narrative Power Reversal Module
+                  </h2>
+                  <p>
+                    <b>😗 Function</b><br>
+                    Through symbolic layering,<br>
+                    this segment restructures narrative identity—reclaiming control of language by shifting from<br>
+                    passive character → subjective presence → narrative architect.<br>
+                  </p>
+                  <p>
+                    <b>✨ Ta-daa~</b><br>
+                    ✦ Narrative Inversion / Role Reversal Structure<br>
+                    ✦ Narrative Layering / Symbol Recurrence<br>
+                    ✦ Narrative Rewriting of Self / Role Substitution / Identity Erasure<br>
+                  </p>
+                  <p>
+                    <b>🔎 Metaphorical Links</b><br>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Metaphor</th><th>Narrative Function</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Held (銜)</td><td>A poised gesture: elegant yet assertive. Suggests hidden intent (treasure in the mouth), control, and reserved power.</td></tr>
+                        <tr><td>Mo-na (莫娜)</td><td>Phonetic play on the my name (“茉”),
+                                                      merging with others’ impression of my grace (“娜”).
+                                                      Also alludes to Moana (freedom, ocean, breaking tradition),
+                                                      while subtly referencing Morgana (Ursula’s sister in Little Mermaid 2) through name-masking,
+                                                      suggesting identity veiling</td></tr>
+                      </tbody>
+                    </table>
+                  </p>
+                </div>
+              </div> 
+            </div>
+
+            <!-- 封底 -->
+            <div class="swiper-slide"  id="heart-section-05-BackcCover">
+              <div class="slide-content">
+                <div class="Align-content">
+                  <h2 style="
+                      border-left: 3px solid #b9b9b9;
+                      padding-left: 20px;
+                      margin-left: 4px;
+                      line-height: 1.4;
+                      font-weight: 600;
+                      ">🧭<br>
+                      Origin Highlight<br>
+                      "The Merman Prince" as the Genesis of Language Invocation
+                  </h2>
+                  <p>
+                    <b>😗 Mechanisms</b><br>
+                    <b>•	Gradual tonal shift:</b> from dreamlike affection → emotional suspension → calm assertion.<br>
+                    <b>•	Narrative perspective ambiguity:</b> Who is speaking? Who is being addressed? Who set the trap?<br>
+                    <b>•	Emotion-infused narrative uncertainty:</b> Reader enters a quasi-psychological test environment.<br>
+                  </p>
+                  <p>
+                    <b>✨ Ta-daa~</b><br>
+                    <b>✦	High-density metaphor compression:</b> Every word carries both linguistic and symbolic weight.<br>
+                    <b>✦	Modular narrative execution:</b> Implements emotional thresholds, role reversal, language-as-contract systems.<br>
+                    <b>✦	Metanarrative × Card interaction:</b> Stands alone as a story, while also encoding the logic of the Ojwp riddle and its emotional seal.<br>
+                  </p>
+                  <p>
+                    <b>🔎 Placement</b><br>
+                    •	Serves as the first trigger in the “Origin Page” of the Language System.<br>
+                    •	Proves that language is not merely for expression — but a modular system for constructing spells, testing sincerity, and summoning narrative agents.<br>
+                    •	Shows how the designer reclaims authorship through reflexive inversion — from a “silent pearl” to the one who summons the story into being.
+                  </p>
+                </div>
+              </div>
+
+            <div class="info-icon" data-info="下載原文全文 + 詳解">i</div>
+            </div>
+          
+          </div>
+
+          <!-- 分頁點點 -->
+          <div class="swiper-pagination"></div>
+          <!-- 左右箭頭 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>         
+        </div>
+      </section>
+
+      <section class="section-scroll-horizontal" id="heart-section-06">
+        <div class="swiper">
+        
+          <div class="swiper-wrapper">
+
+            <!-- 封面 -->
+            <div class="swiper-slide">
+              <div class="slide-content">
+                <p>
+                  <i>Semantic Obfuscation, Meta-Narrative Loop, LLM Adversarial Challenge,<br>
+                     Cross-Narrative Referencing, Narrative Inversion, Mythopoetic Layer Integration ....</i>
+                </p>
+                <p>
+                  So,<br>
+                  This is the story how I
+                  <span class="heart-next-button" data-trigger="open-select" >met</span>
+                  Language System.
+                </p>
+              </div>
+              <div class="info-icon"
+                   data-info="The cute boy?"
+                   data-popup-id="heart-section-06-Page1-info">
+                   i
+              </div>
+              <div class="info-popup" id="heart-section-06-Page1-info">
+                He might be... <br>
+                our matchmaker. d(･∀･)b Thanks~
+              </div> 
+            </div>
+
+
+
+            <!-- Page 1 ~ 3 -->
+            <div class="swiper-slide animate-on-visible" id="SmallTalk-01" data-animation="phrase-series">
+              <div class="slide-content">
+                <p class="phrase-animate" id="phrase1">
+                  By the way,<br>
+                  He did so happy to get the card.
+                </p>
+
+                <p class="phrase-animate" id="phrase2">
+                  And that’s all─<br>
+                  he didn’t ask anything about it after that.<br>
+                  But still asking me out and replying my message ─occasionally(紅字).
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide" id="SmallTalk-02">
+              <div class="slide-content">
+                So─ obviously,<br>
+                he haven’t decode the word.
+              </div>
+            </div>
+
+            <div class="swiper-slide animate-on-visible" id="SmallTalk-03" data-animation="phrase-series">
+              <div class="slide-content">
+                <p class="phrase-animate" id="phrase1">
+                  and that means,<br>
+                  it’s did work, successfully.
+                </p>
+                <p class="phrase-animate" id="phrase2">
+                  Ojwp
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 分頁點點 -->
+          <div class="swiper-pagination"></div>
+          <!-- 左右箭頭 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>         
+        </div>
+      </section>
+      
+    </div>
+
+
+  </div>
+
+
+
+  <!-- 🧬 語言頁（z-index: 200~299） -->
+  <div class="z-group z-group-200 hidden" style="z-index: 200">
+    <div class="lang-scroll-container">
+
+      <section class="section-block" id="lang-section-01">
+        <!-- 背景層：最底，靜止 -->
+        <div class="background-layer layer-lang-section-01"></div>
+
+        <!-- 文字層 -->
+        <div class="text-layer">
+          <h1 class="fade-in-simple">Welcome to Word</h1>           
+        </div>     
+      </section>
+
+      <section class="section-block" id="lang-section-02">
+        <div id="lang-explain">
+          Word is not a tool — it's a terrain.<br>
+          These three essays trace the edges of what it means to generate, distort, and reframe meaning.<br>
+          Together, they form a proof of narrative control across syntax, system, and self.          
+        </div>
+        <div class="card-area">
+          <div class="flip-card-container" data-scroll-target="lang-section-03">
+            <div class="flip-card">
+              <div class="card-front">
+                <h2>When Machines Begin to Verse</h2>
+                <h3>《 當機器開始寫詩 》</h3>
+              </div>
+              <div class="card-back">
+                <h2>Narrative Intent Routing</h2>
+                <p>Directs generated language toward recursive or symbolic narrative paths,<br>
+                   allowing controlled shifts in tone, rhythm, or self-reference.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card-container"  data-scroll-target="lang-section-04">
+            <div class="flip-card">
+              <div class="card-front">
+                <h2>The Stammer of History</h2>
+                <h3>《 歷史的結舌 》</h3>
+              </div>
+              <div class="card-back">
+                <h2>Contextual Fracture Simulation</h2>
+                <p>Emulates meaning breakdowns or naming refusals to expose instability<br>
+                   in narrative flow, perception, or historical inference.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card-container" data-scroll-target="lang-section-05">
+            <div class="flip-card">
+              <div class="card-front">
+                <h2>I Can See the Color, It’s Because of Light</h2>
+                <h3>《 因為有光，我才能看見顏色 》</h3>
+              </div>
+              <div class="card-back">
+                <h2>Cross-Modal Semantic Anchoring</h2>
+                <p>Maps sensory or emotional input into structured narrative language,<br>
+                   anchoring non-verbal experience into symbolic expression.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      
+
+      <section class="section-scroll-horizontal" id="lang-section-03">
+        <div class="swiper">
+        
+          <div class="swiper-wrapper">
+            <!-- 封面 -->
+            <div class="swiper-slide">
+                <div class="title-pair">
+                  <div class="en-title">When Machines Begin to Verse</div>
+                  <div class="zh-title">《 當機器開始寫詩 》</div>
+                </div>
+                <div class="info-icon" 
+                     data-info="How to Make the Article itself a Proof of its Content"
+                     data-popup-id="lang-section-03-Cover-info"
+                >i</div>
+                <div class="info-popup hidden" id="lang-section-03-Cover-info">
+                  <h3>Make the Article itself a Proof of its Content</h3>
+                  <p>
+                    This essay is a layered narrative trap:
+                    <ul>
+                      <li>The opening line is generated by AI — and I tell you so, making you assume that's the twist.</li>
+                      <li>The entire text is written by AI, trained on my own writing style — but I never clarify that, allowing doubt to grow as you read.</li>
+                      <li>One of the paragraphs was written by me — a real human being — yet never explicitly revealed.</li>
+                    </ul>  
+                  </p>
+                  <p>
+                    This isn't just about language generation — it's about narrative intent routing.<br>
+                    The text steers you through belief, suspicion, and reinterpretation, using stylistic mimicry and semantic fracture as tools.<br>
+                    It doesn't just deliver a message — it manipulates your inference path.
+                  </p>
+                </div>
+            </div>
+
+            <!-- Page 1 ~ 6 -->
+            <div class="swiper-slide">
+              <div class="slide-content">
+                <p>
+                  <i>“At the side of the wind, we’re still waiting the name that slipped away.”</i><br>
+                  <br>
+                  Do you think<br>
+                  it’s written by a human —or AI?
+                </p>
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-03-Page1-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-03-Page1-info">
+                The piece begins with a planted bait, drawing the reader into active identification<br>
+                — and unknowingly, into a narrative trap.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                If machines can mimic emotion and weave stories—<br>
+                then is literature still ours alone to claim?<br>
+                Today’s AI doesn’t just echo a poet’s whisper;<br>
+                it can simulate the murmur of a novelist as well.<br>
+                From poems to fables, scripts to fiction,<br>
+                its speed and range could humble even the most seasoned writer.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-03-Page2-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-03-Page2-info">
+                The essay reveals its narrative thesis by foregrounding AI’s mimicry and output speed<br>
+                — opening a deeper inquiry into the boundary between machine and human literature.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                Recently, in my own exploration of creative,<br>
+                I’ve begun training AI as a kind of collaborator—<br>
+                not a replacement, but a partner.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-03-Page3-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-03-Page3-info">
+                By openly admitting a habit of co-writing with AI,<br>
+                the narrator plants a cognitive anchor that leads readers to<br>
+                question the truly authorship of the entire piece.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                It can simulate pain, but has never suffered.<br>
+                It can stack the words of love, but has never loved.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-03-Page4-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-03-Page4-info">
+                It “tells” the reader the core distinctions between AI and human expression<br>
+                — preparing the ground for the key conceptual turn.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                We can pile up a magnificent image<br>
+                with ornate words, layer upon layer<br>
+                but then,<br>
+                it would never come close to you .
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-03-Page5-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-03-Page5-info">
+                It “hints” at the subtle cues that separate human from machine<br>
+                — through a section written entirely by a human, yet never revealed as such.<br>
+                The contrast is embedded in nuance, inviting readers to sense it through doubt.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                Back to the beginning sentence —it’s created by AI.<br>
+                But if, at any moment,<br>
+                you felt even the slightest hesitation—<br>
+                then that pause,<br>
+                that flicker of doubt,<br>
+                might be the most beautiful and irreplaceable space between human and machine.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-03-Page6-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-03-Page6-info">
+                The ending loops back to the opening,<br>
+                reinforcing doubt and completing a semantic circuit<br>
+                — merging essay argument and reader experience into a high-level narrative test.
+              </div>
+            </div>
+
+            <!-- 封底 -->
+            <div class="swiper-slide"  id="lang-section-03-BackcCover">
+              <div class="slide-content">
+                  <h2>Word Module Highlight 01： Narrative Intent Routing</h2>
+                  <ul>
+                    <li>This piece combines tonal deception with narrative self-reflection.</li>
+                    <li>It demonstrates how narrative intent can be directed into emotional and stylistic feedback loops — from poetic cadence, to doubt, to self-disclosure.</li>
+                    <li>It implements the Narrative Intent Routing module, turning AI-generated text into both the narrative and the test itself.</li>
+                    <li>This is the most narrative-driven design in the language section — a proof that language generation can be guided with precision.</li>
+                  </ul>
+              </div>
+              <div class="info-icon" data-info="下載全文 + 詳解">i</div>
+            </div>
+          </div>
+
+          <!-- 分頁點點 -->
+          <div class="swiper-pagination"></div>
+          <!-- 左右箭頭 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>      
+        </div>
+      </section>
+
+
+      <section class="section-scroll-horizontal" id="lang-section-04">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+
+            <!-- 封面 -->
+            <div class="swiper-slide">
+                <div class="title-pair">
+                  <div class="en-title">The Stammer of History</div>
+                  <div class="zh-title">《 歷史的結舌 》</div>
+                </div>
+                <div class="info-icon" 
+                     data-info="How to Shape Wholeness Through Fractured Silence"
+                     data-popup-id="lang-section-04-Cover-info"
+                >i</div>
+                <div class="info-popup hidden" id="lang-section-04-Cover-info">
+                  <h3>The More It Leaps, The Richer It Becomes.</h3>
+                  <p>
+                    This essay is a narrative canvas :
+                    <ul>
+                      <li>Uses exhibition-viewing as contextual entry, building an affective, non-theoretical emotional guide.</li>
+                      <li>Treats language not as a flow of information, but as fragments of history collaged into sense.</li>
+                      <li>Applies semantic dislocation, mirrored transposition, and fractured pacing to construct a dual-layer mechanism of narrative rupture × self-gaze.</li>
+                    </ul>  
+                  </p>
+                  <p>
+                    Ultimately, language transforms from recording history<br>
+                    into becoming the historical rupture itself.<br>
+                    Reading becomes not interpretation—but participation in semantic resonance.
+                  </p>
+                </div>
+            </div>
+
+            <!-- Page 1 ~ 6 -->
+            <div class="swiper-slide">
+              <div class="slide-content">
+                That scene brought to mind Millais’ Ophelia in Hamlet—<br>
+                not the girl herself, not the scattered flowers, not the drowning silk.<br>
+                No human warmth, no evidence of her body.<br>
+                And yet, the silence pressed just the same—serene, but near-mortal.<br>
+                Ophelia, mad and unmoored, stared upward toward something unknowable.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-04-Page1-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-04-Page1-info">
+                Instead of describing the artwork directly,<br>
+                it invokes a literary mirroring, constructing a narrative void from what is absent.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                And in this work<br>
+                that slant of light—<br>
+                the one that spills in from somewhere unseen—<br>
+                lands quietly on a leaf.<br>
+                It’s like the last light that once touched Ophelia’s face,<br>
+                now caught as a shadow in still water.<br>
+                It gazes at us,<br>
+                and makes us gaze at her.<br>
+                But we will never know<br>
+                what she saw.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-04-Page2-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-04-Page2-info">
+                Light and reflection symbolize the eye of history.<br>
+                A mirrored narrative inversion occurs,<br>
+                shifting sentence rhythm and point of view in both directions.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                <p>
+                  The lake darkens into ink,<br>
+                  so deep and silent like glass.<br>
+                  Not serenity—<br>
+                  but a calm that presses too close.<br>
+                  Leaves layer on leaves,<br>
+                  filling the whole frame,<br>
+                  until there’s no more room to move.<br>
+                  No shore in sight.<br>
+                  No direction left.<br>
+                  Only this tight, unmoving now.
+                </p>
+                <p>
+                  The contrast of color is so strong to almost cruel.<br>
+                  The pale, brittle green blades burns a stabbing white—<br>
+                  lying on the abyss like the thin ice you could shatter into slices<br>
+                  with the lightest touch.<br>
+                  And beside it:<br>
+                  the heavy, saturated hue,<br>
+                  thick like a swamp<br>
+                  that intends to swallow you whole, till the end.<br>
+                  Together,<br>
+                  they sharply tear the picture in apart.
+                </p>
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-04-Page3-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-04-Page3-info">
+                Opens with the compressed cadence of “ink-blue like a mirror,” drawing the reader downward.<br>
+                Phrases like “shattered into slices” and “tear apart” function as semantic detonation points—layering narrative tension from stillness to rupture.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                I thought of the title of this exhibition—The Stutter of History.<br>
+                Maybe history was built by people,<br>
+                or maybe it was always just there.<br>
+                When we move through a period of time,<br>
+                when we try to record it—<br>
+                are we shaping it,<br>
+                or merely living inside it?<br>
+                It gains warmth through human hands,<br>
+                but often, it turns cold<br>
+                for the same reason.
+                 </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-04-Page4-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-04-Page4-info">
+                The title of the exhibition appears without explanation,<br>
+                placing the reader in a question zone:<br>
+                can language bear history at all?<br>
+                Sentence pacing deliberately slows—simulating stammer and hesitation.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                History doesn’t lie quietly, waiting to be remembered.<br>
+                It gets torn apart, again and again—<br>
+                taped back, mended, rewritten—<br>
+                until all that’s left<br>
+                is a silent mirror.<br>
+                And what we end up staring at<br>
+                is not history,<br>
+                but a version of ourselves<br>
+                that we still don’t know how to explain.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-04-Page5-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-04-Page5-info">
+                Rhythmic triads like “taped, mended, rewritten” enact repair as rhythm;<br>
+                the “silent mirror” becomes the central metaphor of semantic return.<br>
+                This is the meta-structure where language itself becomes the dissected object.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                Later, I remembered—<br>
+                The word history<br>
+                holds two meanings that contradict—yet coexist.<br>
+                One: his story,<br>
+                someone’s narrative,<br>
+                shaped by will and memory.<br>
+                The other: hi, story,<br>
+                a quiet hello sent into deep time,<br>
+                trying to reach something<br>
+                that might’ve always been there—<br>
+                but was never really ours.<br>
+                And whichever one it is,<br>
+                all we can do<br>
+                is pick up the shards of light<br>
+                between what’s broken and forgotten—<br>
+                and try, in our own way,<br>
+                to keep telling the story.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-04-Page6-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-04-Page6-info">
+                Expands the etymological fracture of “History“ into “His story / Hi, story”<br>
+                —reframing both the source and subject of narrative creation.<br>
+                The final line—“to pick up the shards of light,<br>
+                and continue the telling”—closes with semantic breathwork.
+
+              </div>
+            </div>
+
+            <!-- 封底 -->
+            <div class="swiper-slide"  id="lang-section-04-BackcCover">
+              <div class="slide-content">
+                  <h2>Word Module Highlight 02： Contextual Fracture Simulation</h2>
+                  <ul>
+                    <li>This piece simulates how language breaks down when facing history and emotional narration—revealing its capacity not just to fracture, but to reassemble.</li>
+                    <li>Through semantic mirroring, structural reflexivity, and tonal variation, language is transformed from a carrier of information into the stammer of history itself.</li>
+                    <li>Implements the Contextual Fracture Simulation module, proving the ability to design failure points within narrative—guiding the self back through mirrored disorientation.</li>
+                    <li>It stands as the Language Page’s most definitive demonstration of language collapse and reconstruction as deliberate design.</li>
+                  </ul>
+              </div>
+              <div class="info-icon" data-info="下載全文 + 詳解">i</div>
+            </div>
+          </div>
+
+          <!-- 分頁點點 -->
+          <div class="swiper-pagination"></div>
+          <!-- 左右箭頭 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>         
+        </div>
+      </section>
+
+
+      <section class="section-scroll-horizontal" id="lang-section-05">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- 封面 -->
+            <div class="swiper-slide">
+                <div class="title-pair">
+                  <div class="en-title">I Can See the Color, It’s Because of Light</div>
+                  <div class="zh-title">《 因為有光，我才能看見顏色 》</div>
+                </div>
+                <div class="info-icon" 
+                     data-info="How Can Language Act as A Developer —Revealing the Shape of the Present Through Each Line of Text?"
+                     data-popup-id="lang-section-05-Cover-info"
+                >i</div>
+                <div class="info-popup hidden" id="lang-section-05-Cover-info">
+                  <h3>This Is Not A Display Of Words, But A Refinement Of Feeling.</h3>
+                  <p>
+                    This piece is a narrative greenhouse :
+                    <ul>
+                      <li>Uses color, pigment, texture, and other physical elements as mirrors for language style and personality.</li>
+                      <li>Blends historical emotion, painterly memory, and tonal narrative to form a translatable emotional framework.</li>
+                      <li>Simulates the full generative arc from perception → narrative modularization → self-directed tonal emergence.</li>
+                    </ul>  
+                  </p>
+                  <p>
+                    Ultimately, language becomes more than a tool of description<br>
+                    —it becomes a bridge between light and emotion,<br>
+                    offering a response to the deeper value-modeling question:<br>
+                    What form do I wish my voice to take?
+                  </p>
+                </div>
+            </div>
+
+            <!-- Page 1 ~ 6 -->
+            <div class="swiper-slide">
+              <div class="slide-content">
+                Some light is born to break.<br>
+                You were too radiant,<br>
+                too focused on protecting others.<br>
+                They couldn’t bear the reflection of their own ugliness cast by you.<br>
+                And that’s fine.<br>
+                They really never deserve your presence.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-05-Page1-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-05-Page1-info">
+                Poetic phrasing sets the tonal personality (fragile × proud × calm),<br>
+                with light as a central metaphor—destined to fracture.<br>
+                This forms the groundwork of semantic tension for the entire piece.
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="slide-content">
+                It wasn’t the kind of stillness that takes your breath away out of awe—<br>
+                but the kind that slows your body without asking<br>
+                like walking into a sun-warmed stone path.<br>
+                The air was filled with light—fragmented, slipping through the leaves—filtering time<br>
+                and a scent that moved slower than memory. 
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-05-Page2-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-05-Page2-info">
+                A slower pace, overlapping meanings,<br>
+                and soft rhythms simulate the convergence of touch, smell, and memory.<br>
+                Each word mirrors time and light,<br>
+                launching the entry point of cross-modal rhythm construction.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                I thought of zinc white—<br>
+                a pigment that is translucent, dries slowly, and chips easily,<br>
+                but impossibly pure— with all its heart.<br>
+                Unlike lead white, it doesn’t press heavy.<br>
+                Unlike titanium white, it doesn’t shout.<br>
+                It simply rests, steadily, between light and shadow,<br>
+                telling its story in the quietest way it knows.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-05-Page3-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-05-Page3-info">
+                The physical nature of zinc white becomes a projection of the speaker’s tonal identity and existential form.<br>
+                Following a path of material → language texture → persona mapping,<br>
+                the text performs semantic transduction of nonverbal experience.<br>
+                Each sentence functions as a cross-modal pairing<br>
+                between physical qualities and narrative tone—marking this segment as the module’s pivotal hinge.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                  It was like something flowing through Chiayi, early spring, 1947.<br>
+                  Through bodies collapsed, through letters burned and broken,<br>
+                  through corners of the city that no longer made a sound.<br>
+                  That bullet didn’t kill him.<br>
+                  He died in the collapse of an era.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-05-Page4-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-05-Page4-info">
+                “1947 → Chiayi → Chen Cheng-po → a city corner”<br>
+                —this sequence moves from moment to structure, from individual to era.<br>
+                By withholding direct exposition and leaning into soft rhythm,<br>
+                the text approaches an emotional fault line.<br>
+                This section holds the piece’s peak semantic tension and exemplifies the interface<br>
+                between historical trauma and linguistic contouring.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                In this world, language keeps growing sharper,<br>
+                and emotions flood without direction.<br>
+                Everyone is rushing—to speak, to prove, to be seen.<br>
+                But sometimes,<br>
+                I still think of Chen Cheng-po’s paintings.<br>
+                Those colors never, shout but still hold power.<br>
+                Maybe changing the world doesn’t need to scream loud.<br>
+                Or maybe—<br>
+                I don’t need to change the world at all.<br>
+                I never even wanted to.
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-05-Page5-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-05-Page5-info">
+                From the sharpness of contemporary language and emotional saturation,<br>
+                it transitions to a clear voice: “I never meant to change the world.”<br>
+                The statement anchors a tonal identity that values self-formation over opposition.
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide-content">
+                Then, I can still believe:<br>
+                those vivid colors—<br>
+                eventually, will ride the light,<br>
+                lightly arrive into my life.<br>
+                Because that’s how Chen Cheng-po held his belief—<br>
+                walking along the very edge of light,<br>
+                all the way toward us.<br>
+                Wasn’t he?
+              </div>
+              <div class="info-icon"
+                   data-info="A Seed of Doubt"
+                   data-popup-id="lang-section-05-Page6-info"
+              >i</div>
+              <div class="info-popup" id="lang-section-05-Page6-info">
+                The final line—“I still believe those colors will return”—acts as a semantic seal.<br>
+                The image of Chen Cheng-po embodies a continuity of internal vision.<br>
+                Here, tone, theme, and the modular structure converge into closure.
+              </div>
+            </div>
+
+            <!-- 封底 -->
+            <div class="swiper-slide"  id="lang-section-05-BackcCover">
+              <div class="slide-content">
+                  <h2>Word Module Highlight 03： Cross-Modal Semantic Anchoring</h2>
+                  <ul>
+                    <li>This piece enacts a cross-modal translation between language and sensory experience—transforming diffuse, nonverbal inputs like light, color, texture, and historical memory into structured tonal identities.</li>
+                    <li>Through the reframing of materials (zinc white), paintings, historical ruptures, and the scent of memory, it constructs a system where tone becomes mappable, and language gains a physical rhythm. The full process of perception → interpretation → tonal persona is modularized.</li>
+                    <li>By implementing the Cross-Modal Semantic Anchoring module, it proves that language can link bi-directionally with the sensory world—supporting narrative individuation, tonal control, and the conscious design of emotional stance..</li>
+                    <li>A landmark work within the Language Page that crystallizes the power of poetic mirroring × emotional modularity.</li>
+                  </ul>
+              </div>
+              <div class="info-icon" data-info="下載全文 + 詳解">i</div>
+            </div>
+          </div>
+
+          <!-- 分頁點點 -->
+          <div class="swiper-pagination"></div>
+          <!-- 左右箭頭 -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>         
+        </div>
+      </section>
+
+
+      <section class="section-block" id="lang-section-06">
+        <p>
+          <i>Narrative Intent Routing, Contextual Fracture Simulation, Cross-Modal Semantic Anchoring, ....</i>
+        </p>
+        <p>
+          So, this is the Demo of Word.<br>
+          And, you can
+          <span class="lang-next-button" data-trigger="open-select" >subscribe</span> 
+          to unlock more :3
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+
+  <!-- 🌌 結構頁（z-index: 300~399） -->
+  <div class="z-group z-group-300 hidden" style="z-index: 300">
+    <div class="struct-scroll-container">
+
+      <section class="section-block" id="struct-section-01">
+        <!-- 背景層：最底，靜止 -->
+        <div class="background-layer layer-struct-section-01"></div>
+        <!-- 文字層 -->
+        <div class="text-layer">
+          <h1 class="fade-in-simple">Welcome to Structure</h1>           
+        </div>     
+      </section>
+
+      <section class="section-block" id="struct-section-02">
+        <p>
+          I stored memories —With emotions,<br>
+          by building a system,<br>
+          in a game,<br>
+          through the placement<br>
+          of clusters of poems<br>
+          on a logical map.
+        </p>
+        <p>
+          And...
+          <span class="murmur" id="IG-murmur">Instagram</span>
+           is the joystick, this time.
+        </p>
+      </section>
+
+      <section class="section-planet-map" id="struct-section-03">
+        <img src="assets\img\main\03_結構頁\sec03\background.png" class="planet-bg" />
+
+        <!-- 暗點們 -->
+        <div class="point dark-point" style="top:57%; left:25%;" data-tooltip="Awaiting Launch"></div>
+        <div class="point dark-point" style="top:60%; left:33%;" data-tooltip="Awaiting Launch"></div>
+        <div class="point dark-point" style="top:48%; left:38%;" data-tooltip="Awaiting Launch"></div>
+        <div class="point dark-point" style="top:33%; left:51%;" data-tooltip="Awaiting Launch"></div>
+        <div class="point dark-point" style="top:45%; left:70%;" data-tooltip="Awaiting Launch"></div>
+        <div class="point dark-point" style="top:77%; left:74%;" data-tooltip="Awaiting Launch"></div>
+
+        <!-- 亮點 -->
+        <div class="point bright-point"
+          style="top:56%; left:46.5%;" 
+          data-tooltip=" Open Zone "
+          data-scroll-target="struct-section-04"></div>
+
+        <!-- 線 -->
+        <div class="map-element-container"
+             data-tooltip=" Your Path " 
+             data-scroll-target="struct-section-05">
+          <img src="assets\img\main\03_結構頁\sec03\line.png"  id="struct-section-03-line"/>
+        </div>
+         <!-- <canvas id="line-canvas" width="2048" height="1448"></canvas>   -->
+
+      </section>
+
+
+      <section class="section-block" id="struct-section-04">
+        <h2 id="struct-section-04-title">Open Zone</h2>
+        <br>
+
+        <!-- ✅ 主卡片群容器 -->
+        <div class="card-gallery">
+
+          <!-- ✅ 卡片組01 -->
+          <div class="expandable-card" id="struct-section-04-module1">
+            <div class="card-preview">
+              <img src="assets\img\main\03_結構頁\sec04\mod1_Pre.png"/>
+              <div class="card-caption">Modular Narrative Architecture</div>
+            </div>
+
+            <!-- 隱藏的大卡片視窗 -->
+            <div class="card-expanded hidden">
+              <div class="expanded-bg"></div>
+              <div class="expanded-content">
+                <div class="swiper expanded-swiper">
+                  <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" id="struct-section-04-module01-Cover">
+                      <div class="slide-content">
+                        <h2>Even serious business deserves to be done with elegance.</h2>
+                      </div>
+                    </div>
+                    
+                    <div class="swiper-slide" id="struct-section-04-module01-Page1">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/01_Modular/p1.png') ;">
+                      </div>                  
+                    </div>
+                    
+                    <div class="swiper-slide" id="struct-section-04-module01-Page2">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/01_Modular/p2.png') ;">
+                      </div>  
+                    </div>
+
+                    <div class="swiper-slide" id="struct-section-04-module01-Page3">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/01_Modular/p3.png') ;">
+                      </div>  
+                    </div>
+
+                    <div class="swiper-slide" id="struct-section-04-module01-Page4">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/01_Modular/p4.png') ;">
+                      </div>    
+                    </div>
+
+                    <div class="swiper-slide" id="struct-section-04-module01-BackcCover">
+                      <div class="slide-content">
+                        <div class="Align-content">
+                          <h2 style="
+                              border-left: 3px solid #b9b9b9;
+                              padding-left: 20px;
+                              margin-left: 4px;
+                              line-height: 1.4;
+                              font-weight: 600;
+                              ">01<br>
+                              Structure Highlight<br>
+                              "The Merman Prince" as the Genesis of Language Invocation
+                          </h2>
+                          <p>
+                            <b>😗 Operations</b><br>
+                            •	Treat each poem set (e.g., Muzha, Tainan) as a narrative cluster<br>
+                            •	Maintain consistent modular structure across sets for reassembly<br>
+                            •	The IG grid serves as a higher-level container enabling modular intent routing<br>
+                          </p>
+                          <p>
+                            <b>✨ Ta-daa~</b><br>
+                            ✦	Segmenting narrative into semantic modules by function and order<br>
+                            ✦	Aligning meaning progression through intra/inter-module structure<br>
+                            ✦	Generating thematically diverse content from a unified narrative skeleton<br>
+                          </p>
+                          <p>
+                            <b>🔎 Position</b><br>
+                            •	Demonstrates that language structure can be designed as a modular narrative system<br>
+                            •	Supports "replicable / stackable / extensible" storytelling frameworks
+                          </p>
+                        </div>
+                      </div>
+                    </div>   
+                  </div>
+
+                  <!-- 分頁點點 -->
+                  <div class="swiper-pagination"></div>
+                  <!-- 左右箭頭 -->
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>   
+                </div>
+                <div class="close-button">x</div>
+              </div>
+            </div>
+          </div>
+
+        
+          <!-- ✅ 卡片組02 -->
+          <div class="expandable-card" id="struct-section-04-module2">
+            <div class="card-preview">
+              <img src="assets\img\main\03_結構頁\sec04\mod2_Pre.png"/>
+              <div class="card-caption">Structural Semiotic Grid</div>
+            </div>
+
+            <!-- 隱藏的大卡片視窗 -->
+            <div class="card-expanded hidden">
+              <div class="expanded-bg"></div>
+              <div class="expanded-content">
+                <div class="swiper expanded-swiper">
+                  <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" id="struct-section-04-module02-Cover">
+                      <div class="slide-content">
+                        <h2>How many dimensions can you sense?</h2>
+                      </div>
+                    </div>
+
+                    <div class="swiper-slide" id="struct-section-04-module02-Page1">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/02_Grid/p1.png') ;">
+                      </div>  
+                    </div>
+
+                    <div class="swiper-slide" id="struct-section-04-module02-Page2">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/02_Grid/p2.png') ;">
+                      </div>  
+                    </div>
+                    
+                    <div class="swiper-slide" id="struct-section-04-module02-Page3">
+                      <div class="slide-content"
+                           style="background-image: url('/merman-prince/assets/img/main/03_結構頁/sec04/02_Grid/p3.png') ;">
+                      </div>   
+                    </div>
+
+                    <div class="swiper-slide" id="struct-section-04-module02-BackcCover">
+                      <div class="slide-content">
+                        <div class="Align-content">
+                          <h2 style="
+                              border-left: 3px solid #b9b9b9;
+                              padding-left: 20px;
+                              margin-left: 4px;
+                              line-height: 1.4;
+                              font-weight: 600;
+                              ">02<br>
+                              Structure Highlight<br>
+                              Structural Semiotic Grid
+                          </h2>
+                          <p>
+                            <b>😗 Operations</b><br>
+                            •	Use spatial layout of cards as a semantic-generative mechanism<br>
+                            •	Translate positioning, whitespace, order, and visual rhythm into semiotic cues<br>
+                            •	Each card’s place and direction is narrative-charged, not merely visual<br>
+                          </p>
+                          <p>
+                            <b>✨ Ta-daa~</b><br>
+                            ✦	Controls the viewer’s reading flow and perception tempo<br>
+                            ✦	Constructs "structure as meaning" sensory-layer design modules<br>
+                            ✦	Highlights integration of language structure and spatial pragmatics<br>
+                          </p>
+                          <p>
+                            <b>🔎 Position</b><br>
+                            •	Embodies the “Language = Heart × (Word + Structure)” principle, focused on structure<br>
+                            •	Demonstrates non-textual semantic design as narrative architecture<br>
+                            •	Serves as a structural logic model behind the poem-card system
+                          </p>
+                        </div>
+                      </div> 
+                    </div>   
+                  </div>
+
+                  <!-- 分頁點點 -->
+                  <div class="swiper-pagination"></div>
+                  <!-- 左右箭頭 -->
+                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next"></div>
+                  
+                  <div class="close-button">x</div>   
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> 
+              
+      </section>
+
+
+      <section class="section-block" id="struct-section-05">
+
+        <div class="card-area">
+
+          <div class="expand-card-complete"
+               id="struct-section-05-card1"
+               data-video="assets/vedio/main/0201_九宮格.mp4">
+           
+            <!-- 單卡內容（正常 + Hover） -->
+            <div class="expand-card-container">
+                <div class="hover-swap-card">
+                    <div class="before">
+                      <p>
+                        Life is a maze.<br>
+                        So it means…<br>
+                        there’s always way out—<br>
+                        and it can be fun.
+                      </p>
+                    </div>
+                    <div class="after">
+                      <p>Why don’t enjoy every moment.</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="expand-card-complete"
+               id="struct-section-05-card2"
+               data-video="assets/vedio/main/0202_跳舞小人.mp4">
+           
+            <!-- 單卡內容（正常 + Hover） -->
+            <div class="expand-card-container">
+                <div class="hover-swap-card">
+                    <div class="before">
+                      <p>
+                        It’s not a fault<br>
+                        dancing beyond the universe.
+                      </p>
+                    </div>
+                    <div class="after">
+                      <p>It’s also a good choice to take a nap occasionally.</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="expand-card-complete"
+            id="struct-section-05-card3"
+            data-video="assets/vedio/main/0203_中置.mp4">
+           
+            <!-- 單卡內容（正常 + Hover） -->
+            <div class="expand-card-container">
+                <div class="hover-swap-card">
+                    <div class="before">
+                      <p>
+                        With all my heart─<br>
+                        from beginning to the end.
+                      </p>
+                    </div>
+                    <div class="after">
+                      <p>I'm always here.</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+
+      
+
+        <br>
+        <div id="struct-explain">
+          What’s the truth, Which is the answer<br>
+          Where you stand, How you see.<br>
+          Every moment counted, and it’s created by yourself.
+        </div>
+      
+      </section>
+
+
+      <section class="section-block" id="struct-section-06">
+        <p>
+          <i>Narrative Topology Mapping, Modular Narrative Architecture,<br>
+             Structural Semiotic Grid, Cognitive Pathway Simulation …</i>
+        </p>
+        <p>  
+          Phase 1 Complete.<br>
+          Constellations align.<br>
+          <span class="struct-next-button" data-trigger="open-select" >More</span> 
+          stars are going to return.
+        </p>  
+      </section>
+
+
+    
+    </div>
+  </div>
+
+
+
+
+  <!-- 🎁 獎勵頁（z-index: 500~599） -->
+  <div id="rewardOverlay" class="z-group z-group-500 overlay hidden" style="z-index: 550">
+    <!-- 星圖動畫、五角結構、語義說明 -->
+
+      <div class="video-container">
+        <video id="introVideo" autoplay muted playsinline onended="showNextButton()" >
+          <source src="assets/vedio/main/0501_中結局.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+            <!-- 蓋在影片上的靜態結尾圖像 -->
+        <div id="Next-click-layer">
+          <div class="reward-next-button-container">
+            <button class="reward-next-button" data-trigger="open-select">繼續</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skip-button-container">
+        <button class="reward-skip-button" data-trigger="open-select">Skip</button>
+      </div>
+
+  </div>
+
+
+  <!-- 🔀 選擇頁（z-index: 600~699） -->
+  <div id="selectOverlay" class="z-group z-group-600 overlay hidden" style="z-index: 650">
+    <!-- 要有 content 層把 question 和 choices 包起來變成一個「整體」來置中(否則原本兩個是兄弟元素、沒辦法共用 flex 垂直置中效果)  -->
+    <div id="selectContent" class="selection-content"> </div>
+  </div>
+
+
+  <!-- 🎬 影片模組（只放一次） -->
+  <div class="video-overlay hidden">
+    <div class="video-container">
+      <video id="popup-video" height="50%" controls>
+        <source id="video-source" src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button class="close-video">×</button>
+    </div>
+  </div>
+
+
+
+  <!-- 🔧 JS 腳本導入區 -->
+  <script type="module" src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/routes.js"></script>
+  <script type="module" src="assets/js/reward.js"></script>
+  <script type="module" src="assets/js/Hscroll_ExpandCard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script type="module" src="assets/js/FadeIO_ZoomIn.js"></script>
+  <script type="module" src="assets/js/Vscroll_Section.js"></script>
+  <!-- <script type="module" src="assets/js/Canva_Sensor.js"></script> -->
+  <script type="module" src="assets/js/cardVedio.js"></script>
+  <script type="module" src="assets/js/TableLanguageSwitch.js"></script>
+  
+  <script src="assets/js/session.js"></script>
+  <script src="assets/js/firebase-init.js"></script>
+  <!-- <script src="assets/js/你的記錄操作.js"></script> -->
+  <script src="assets/js/track.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1035 @@
+/* main.css */
+
+
+/* 全域設定盒模型，統一排版行為 */
+*, *::before, *::after {
+  box-sizing: border-box;  /* 防止 padding 撐爆寬度*/
+}
+
+html {
+ scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* === 文字樣式 === */
+
+:root {
+  --font-base: 20px;        /* 基準字體大小 */
+  --font-small: 0.875rem;   /* 小字：14px */
+  --font-medium: 1rem;      /* 中字：16px */
+  --font-large: 1.25rem;    /* 大字：20px */
+  --font-xlarge: 1.5rem;    /* 特大字：24px */
+  --font-title: 2rem;       /* 主標題字：32px */
+}
+
+h1 {
+  font-size: var(--font-title);
+}
+h2 {
+  font-size: var(--font-xlarge);
+}
+p, li {
+  font-size: var(--font-medium);
+}
+small, .caption {
+  font-size: var(--font-small);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-base: 15px;
+    --font-title: 1.5rem;
+  }
+}
+
+
+body, p, span, a, h1, h2, h3, h4, h5, h6 {
+  /* font-family: 'Noto Serif TC', 'Playfair Display', 'Georgia', serif; */
+  font-family: 'EB Garamond', 'Spectral', 'Noto Serif TC', serif;
+  font-size: var(--font-base);
+  line-height: 1.8; /* 增加行距，預設是 1.5 左右 */
+  letter-spacing: 0.06em; /* 增加字距，預設是 0~0.01em */
+  text-shadow:
+    0 0 2px rgba(254, 250, 250, 0.434),
+    0 0 6px rgba(189, 189, 189, 0.2);
+
+}
+
+/* === 校正對齊 === */
+.Align-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  top: 2rem;
+  bottom: 16px;
+  /* justify-content: center; */
+  align-items: left; 
+  flex-direction: column;
+}
+
+/* === 表格樣式 === */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+th, td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: white;
+  color: #2d2d2d;
+}
+
+th {
+  background-color: #f9fafc;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+}
+
+tr:hover td {
+  background-color: #f3f6fc;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* === 表格中英切換 === */
+/* .lang-zh, .lang-en {
+  display: none;
+}
+.show-zh .lang-zh {
+  display: table-cell;
+}
+.show-en .lang-en {
+  display: table-cell;
+}
+
+.toggle-btn {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background-color: #e0e7ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+} */
+
+
+/* === 切頁動畫 === */
+.z-group {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.z-group.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.z-group.hidden {
+  display: none;
+}
+
+
+
+
+/* ===========================
+   ▶ 全域 UI 固定浮動元件 樣式
+   =========================== */
+
+#navbar {
+  position: fixed; /* 不跟其他元素互動(並排)  */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 垂直置中 */
+  width: 100vw ;
+  height: 55px;
+  overflow-x: hidden; /* 隱藏超出 */
+  background-color: #17171763;
+  color: #ffffff;
+  left: 0;    /* 確保從左側開始，不偏移 */
+  font-size: medium;
+}
+
+
+.hidden {
+  display: none;
+}
+
+#level-icon,
+#toolbox-icon {
+  position: fixed;
+  z-index: 820;
+  cursor: pointer;
+  font-size: 35px;
+}
+
+#level-icon {
+  top: 9px;
+  left: 15px;
+}
+
+#toolbox-icon {
+  bottom: 12px;
+  right: 30px;
+}
+
+#level-panel,
+#toolbox-panel {
+  position: fixed;
+  z-index: 821;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+}
+
+#level-panel {
+  top: 63px;
+  left: 12px;
+}
+
+#toolbox-panel {
+  bottom: 65px;
+  right: 30px;
+}
+
+.combo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 60px); /* 5格 */
+  grid-template-rows: repeat(2, 30px);    /* 2行 */
+  gap: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.combo-cell {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #000;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 4px;
+  font-size: 13px;
+
+}
+
+
+
+
+
+/* ================================
+   ▶ NEXT BUTTON 分頁導航按鈕樣式
+   ================================ */
+
+   
+/* .next-button-container {
+  text-align: center;
+  margin-top: 2em;
+  position: relative;  父容器可為 relative
+}
+
+.next-button {
+  position: absolute; 
+  bottom: 5%;
+  right: 5%;
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 0.8em 2em;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+} */
+
+/* z-index 分層 */
+.z-group-100 .next-button { z-index: 185; }
+.z-group-200 .next-button { z-index: 285; }
+.z-group-300 .next-button { z-index: 385; }
+.z-group-500 .next-button { z-index: 585; }
+
+
+.heart-next-button,
+.lang-next-button,
+.struct-next-button {
+  display: inline-block;
+  color: rgb(144, 106, 167); /* 主色系 */
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.heart-next-button:hover,
+.lang-next-button:hover,
+.struct-next-button:hover {
+  color: white;
+}
+
+.heart-next-button::after,
+.lang-next-button::after,
+.struct-next-button::after {
+  content: "~ click to GoGo ~";
+  position: absolute;
+  top: 120%; /* 出現在下方一點 */
+  left: 50%;
+  transform: translateX(-50%); /* 讓提示文字置中對齊 */
+  white-space: nowrap;
+  margin-left: 8px;
+  font-size: 0.6em;
+  color: rgb(94, 69, 109);
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: rgba(235, 232, 237, 0.733); /* 視你背景而定，也可設transparent */
+  padding: 6px 3px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.heart-next-button:hover::after,
+.lang-next-button:hover::after,
+.struct-next-button:hover::after {
+  opacity: 1;
+}
+
+
+.reward-next-button-container{
+  display: flex;
+  align-items: center;
+}
+
+.reward-next-button,
+.reward-skip-button  {
+  position: absolute;
+ 
+  text-decoration: none;
+  z-index: 870;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  border: 1px solid #999;
+  padding: 12px 28px;
+  margin: 0.5em;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.reward-next-button{
+  align-items: center;
+}
+
+.reward-skip-button {
+  bottom: 5%;
+  right: 5%;
+}
+
+.reward-next-button:hover,
+.reward-skip-button:hover  {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  border-color: #ccc;
+  color: #ffeedd;
+}
+
+
+
+/* ==================
+   ▶ 獎勵頁 相關設定
+   =================== */
+
+
+.video-container {
+  position: relative;
+  /* width: 100vw;
+  height: 100vh; */
+  overflow: hidden;
+
+  width: 100vw;
+  aspect-ratio: 16 / 9;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#Next-click-layer {
+  display: none;             /* ✅ 一開始就不顯示 */
+opacity: 0;                  /* ✅ 預設透明 */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 100%;
+  height: 100%; */
+   aspect-ratio: 16 / 9;
+  transition: opacity 1s ease;
+  pointer-events: none;      /* 防止在 display:none 被取消後意外點到 */
+
+}
+
+
+ /* ✅ 出現時才變成 flex */
+#Next-click-layer.show {
+  display: flex;            
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+
+
+
+/* ==================
+   ▶ 選擇頁 相關設定
+   =================== */
+
+#selectOverlay {
+  position: fixed;
+  margin:0 auto;
+
+  width: 100%;
+  height: 100%;
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+  z-index: 650;
+
+  display: flex !important;
+  justify-content: center;  /* 水平置中 */
+  align-items: center;  /* 垂直置中 */
+}
+
+/* ⬇️ 內層統一垂直排版 */
+.selection-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 問句區塊 */
+.selection-question {
+  font-size: 3rem;
+  margin-bottom: 1em;
+}
+
+/* 選項按鈕區塊 */
+/* .selection-choices button.choice {
+  margin: 0.5em;
+  padding: 0.5em 1.2em;
+  font-size: 1em;
+
+} */
+
+.selection-choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+
+}
+
+button.choice {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s;
+  
+}
+
+button.choice:hover {
+  transform: scale(1.05);
+}
+
+.choice-image {
+  width: 300px;  /* 或用你想要的尺寸 */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background-color: #0404043a;
+}
+
+
+
+
+
+/* ======================
+    ▶ 分頁 各section設定
+   ====================== */
+
+.lang-scroll-container,
+.heart-scroll-container,
+.struct-scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden; /* ✅ 關閉 x 軸滑桿 */
+}
+
+.section-block {
+  /* height: 100%; */
+  width: 100vw;
+  aspect-ratio: 16 / 9;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  position: relative;
+  overflow: hidden;  
+}
+
+.section-scroll-horizontal {
+  position: relative;
+  width: 100vw;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+
+/* ========================
+    ▶ 分頁 側邊卷軸滑桿樣式
+   ======================== */
+
+
+/* 針對 Chrome、Edge、Safari 等瀏覽器支援的 */
+
+/* 自訂捲軸寬度 */
+.lang-scroll-container::-webkit-scrollbar,
+.heart-scroll-container::-webkit-scrollbar,
+.struct-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 捲軸軌道（背景） */
+.lang-scroll-container::-webkit-scrollbar-track,
+.heart-scroll-container::-webkit-scrollbar-track,
+.struct-scroll-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2); /* 半透明黑 */
+  border-radius: 4px;
+}
+
+/* 滑塊本體 */
+.lang-scroll-container::-webkit-scrollbar-thumb,
+.heart-scroll-container::-webkit-scrollbar-thumb,
+.struct-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4); /* 半透明淺色 */
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+/* 滑鼠 hover 時更明顯 */
+.lang-scroll-container::-webkit-scrollbar-thumb:hover,
+.heart-scroll-container::-webkit-scrollbar-thumb:hover,
+.struct-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+
+/* Firefox 自訂捲軸（僅支援顏色與寬度） */
+.lang-scroll-container,
+.heart-scroll-container,
+.struct-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.4) rgba(0,0,0,0.2);
+}
+
+
+
+
+/* ======================
+    ▶ 起源頁 相關設定
+   ====================== */
+
+#heart-section-01,
+#heart-section-04 {
+  background-color: #2d2d2d;
+}
+
+#heart-section-02,
+#heart-section-04 {
+  color: #f0f0f0;
+  /* position: absolute; */
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#heart-section-02 {
+  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec02_background.png');
+}
+
+#heart-section-03 .swiper-slide {
+  color: #f0f0f0;
+  /* position: absolute; */
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#Ojwp-cover {
+ background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/Cover.png');
+}
+#Ojwp-01 {
+ background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p01_background.png');
+ color: #f0f0f0;
+}
+#Ojwp-02 {
+ background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p02_background.png');
+}
+#Ojwp-03 {
+ background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p03_background.png');
+ color: #f0f0f0;
+ position: relative;
+}
+#Ojwp-04 {
+ background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p04_background.png');
+ color: #f0f0f0;
+}
+
+#Ojwp-03 .title {
+ font-size: larger;
+ font-weight: bold;
+ display: inline-block;
+}
+
+#Ojwp-03 .expand-line,
+#Ojwp-03 .expand-card-complete {
+  display: inline-block;
+}
+
+#Ojwp-03 .expand-card-complete {
+  position: absolute;
+}
+
+#Ojwp-03 .Module-area{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+}
+
+
+.hover-swap-word,
+.hover-swap-card {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+ 
+  /* margin: 12px 0; 控制選項間距 */
+  height: 1.5em;   /* 高度可調整以容納最大字串 */
+}
+
+.hover-swap-word .before,
+.hover-swap-card .before {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+ 
+  position: absolute;
+  width: 100%;
+  text-align: left;
+  z-index: 2;
+}
+
+.hover-swap-word .after,
+.hover-swap-card .after {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: rgb(144, 106, 167);
+
+  z-index: 1;
+}
+
+.hover-swap-word:hover .before,
+.hover-swap-card:hover .before {
+  opacity: 0;
+}
+
+.hover-swap-word:hover .after,
+.hover-swap-card:hover .after {
+  opacity: 1;
+}
+
+
+#heart-section-04 {
+  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec04_background.png');
+}
+
+#heart-section-05 .swiper-slide{
+  background-color: #3d6472;
+}
+
+
+
+
+
+
+/* ======================
+    ▶ 語言頁 相關設定
+   ====================== */
+
+.layer-lang-section-01 {
+  background-image: url('/merman-prince/assets/img/main/02_語言頁/sec01_background.png');
+  z-index: 201 ;
+}
+
+#lang-section-01 {
+  background-color: #2d2d2d;
+}
+
+
+#lang-section-02,
+#lang-section-06 {
+  background-color: #2d2d2d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.4em;
+}
+
+#lang-section-02 .card-front {
+  z-index: 236;
+}
+
+
+/* 上方文字區塊 */
+#lang-explain {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 5vh;
+  max-width: 800px;
+}
+
+/* 卡片容器區域（橫向排卡片） */
+#lang-section-02 .card-area {
+  display: flex;
+  justify-content: center;
+  gap: 3vw; /* 卡片間距 */
+  flex-wrap: wrap; /* 窄螢幕自動換行 */
+  width: 80%;
+}
+
+
+@keyframes pulseGlow {
+  0%   { outline-color: rgba(255, 255, 255, 0.6); }
+  50%  { outline-color: rgba(255, 255, 255, 1); }
+  100% { outline-color: rgba(255, 255, 255, 0); }
+}
+
+
+
+/* ======================
+    ▶ 結構頁 相關設定
+   ====================== */
+
+
+.layer-struct-section-01 {
+  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec01_background.png');
+  z-index: 201 ;
+}
+
+#struct-section-01 {
+  background-color: #2d2d2d;
+}
+
+#struct-section-02 {
+  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec02_background.png');
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#struct-section-02,
+#struct-section-04,
+#struct-section-05,
+#struct-section-06 {
+  background-color: #2d2d2d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.4em;
+}
+
+
+
+
+.section-planet-map {
+  background-color: #2d2d2d;
+  position: relative;
+  width: 100vw;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.planet-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 310;
+}
+
+/* 點 */
+.point {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  cursor: pointer;
+  z-index: 386;
+}
+
+.point::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  font-size: 0.75em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+}
+
+.point:hover::after {
+  opacity: 1;
+}
+
+.point:hover {
+  transform: scale(1.3);
+}
+
+.dark-point {
+  background-color: #888;
+}
+.dark-point:hover {
+  cursor: no-drop;  
+}
+
+.bright-point {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* 通用設定：所有圖層元素 */
+.map-element-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  z-index: 384;
+}
+
+#struct-section-03-line {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  align-items: center;
+  justify-items: center;
+
+}
+
+.map-element-container:hover {
+  transform: scale(1.2);
+}
+
+/* tooltip 設定 */
+.map-element-container::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 53%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+  font-size: 0.75em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 385;
+
+}
+
+.map-element-container:hover::after {
+  opacity: 1;
+}
+
+
+
+/* 卡片容器區域（橫向排卡片） */
+#struct-section-04 .card-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 8vw; /* 卡片間距 */
+  flex-wrap: wrap; /* 窄螢幕自動換行 */
+  width: 80%;
+}
+
+
+#struct-section-04 .expanded-content{
+  
+  
+  background-color: rgba(99, 99, 99, 0.974);
+}
+
+
+#struct-section-04 .swiper-slide{
+  padding:0;
+}
+
+#struct-section-04 .slide-content {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+
+#struct-section-04 .swiper-slide img {
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+
+  /* ⭐ 加陰影 & 邊框 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  border-radius: 8px;
+  background-color: white;
+}
+
+
+#struct-section-05 .card-area {
+  display: flex;
+  justify-content: center;
+  gap: 3vw; /* 卡片間距 */
+  /* flex-wrap: wrap; 窄螢幕自動換行 */
+  width: 80%;
+}
+
+#struct-section-05-card1 .before {
+  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec05/preview九宮格.png');
+}
+#struct-section-05-card2 .before {
+  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec05/preview小人.png');
+}
+#struct-section-05-card3 .before {
+  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec05/preview中置.png');
+}
+
+#struct-section-05 .before {
+  color: #f0f0f0;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+}
+
+
+.murmur {
+  display: inline-block;
+  color: rgb(144, 106, 167); /* 可依你的主色系調整 */
+  /* cursor: url('your.png') 0 0, auto; */
+  /* 理想為 32x32 px */
+  /* 理想「實際點擊點」在左上角（或 hotspot） */
+  transition: color 0.3s ease;
+  position: relative;
+}
+.murmur:hover {
+  color: white;
+}
+
+.murmur::after {
+  position: absolute;
+  top: 120%; /* 出現在下方一點 */
+  left: 50%;
+  transform: translateX(-50%); /* 讓提示文字置中對齊 */
+  white-space: nowrap;
+  margin-left: 8px;
+  font-size: 0.6em;
+  color: rgb(94, 69, 109);
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: rgba(235, 232, 237, 0.733); /* 視你背景而定，也可設transparent */
+  padding: 6px 3px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.murmur:hover::after {
+  opacity: 1;
+}
+
+
+#IG-murmur:hover {
+  cursor: url('/merman-prince/assets/img/全域/Cursor/精神狀態正確.png') 0 0, auto;  
+}
+#IG-murmur::after {
+  content: "because it’s free";
+}
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ending</title>
+  <link rel="stylesheet" href="assets/css/ending.css" />
+
+  <!-- Firebase SDKs（一定要照順序）-->
+  <!-- Firebase v8（舊版） -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Firebase Init -->
+  <script src="assets/js/firebase-init.js"></script>
+</head>
+<body>
+  <!-- Step 1: Fullscreen animation_01 -->
+  <div id="step-01" class="step fullscreen">
+    <video src="assets/vedio/ending/終局獎勵_01.mp4" autoplay muted playsinline onended="showOptions('step-02')"></video>
+  </div>
+
+  <!-- Step 2: Two options after animation_01 -->
+  <div id="step-02" class="step hidden">
+    <div class="option-container">
+      <button onclick="window.location.href='index.html'"
+              class="report-btn"
+              id="option2a">
+              Retry
+      </button>
+      <button onclick="transitionStep('step-02', 'step-03')"
+              class="report-btn"
+              id="option2b">
+              Report a problem
+      </button>
+    </div>
+  </div>
+
+  <!-- Step 3: Transition screen with new options -->
+  <div id="step-03" class="step hidden">
+    <div class="content">
+      <p>
+        Are you kidding? <br>
+        fuck off and go find your own balcony 😉
+      </p>
+      <div class="option-container">
+        <button onclick="window.location.href='index.html'"
+                class="report-btn"
+                id="option3a">
+                NO
+        </button>
+        <button onclick="playAnimation04()"
+                class="report-btn"
+                id="option3b">
+                OK
+        </button>
+        </div>
+    </div>
+  </div>
+
+  <!-- Step 4: Fullscreen animation_04 -->
+  <div id="step-04" class="step fullscreen hidden">
+    <video id="video04" src="assets/vedio/ending/終局獎勵_04.mp4" autoplay muted playsinline onended="transitionStep('step-04', 'step-05')"></video>
+  </div>
+
+  <!-- Step 5: Final message and contact option -->
+  <div id="step-05" class="step hidden">
+    <div class="option-container">
+        <p>
+          And seriously,<br>
+          go find your own balcony now.<br>
+          <br>
+          ...<br>
+          <br>
+          or<br>
+          <span class="custom-tooltip-container">
+            <a href="https:www.linkedin.com/in/ni-r-694253291/overlay/contact-info/"
+                    class="report-btn"
+                    id="option5"
+                    target="_blank" rel="noopener noreferrer">
+                    pay me
+            </a>
+            <span class="custom-tooltip">
+              So I can go on the trip I agreed to 🥺<br>
+              And you get a limited-edition batch of user behavior data. 😎
+            </span>
+          </span>
+        </p>
+ 
+    </div>
+  </div>
+
+
+   <!-- 🔧 JS 腳本導入區 -->
+  <script src="assets/js/ending.js"></script>
+
+  <script src="assets/js/session.js"></script>
+  <script src="assets/js/firebase-init.js"></script>
+  <!-- <script src="assets/js/你的記錄操作.js"></script> -->
+  <script src="assets/js/track.js"></script>
+
+
+</body>
+</html>
