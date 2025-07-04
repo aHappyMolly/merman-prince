@@ -586,7 +586,8 @@ button.choice:hover {
 }
 
 #heart-section-02 {
-  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec02_background.png');
+  background-image: url('../img/main/01_起源頁/sec02_background.png');
+  background-color: #2d2d2d;
 }
 
 #heart-section-03 .swiper-slide {
@@ -601,22 +602,22 @@ button.choice:hover {
 }
 
 #Ojwp-cover {
- background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/Cover.png');
+ background-image: url('../img/main/01_起源頁/sec03/Cover.png');
 }
 #Ojwp-01 {
- background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p01_background.png');
+ background-image: url('../img/main/01_起源頁/sec03/p01_background.png');
  color: #f0f0f0;
 }
 #Ojwp-02 {
- background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p02_background.png');
+ background-image: url('../img/main/01_起源頁/sec03/p02_background.png');
 }
 #Ojwp-03 {
- background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p03_background.png');
+ background-image: url('../img/main/01_起源頁/sec03/p03_background.png');
  color: #f0f0f0;
  position: relative;
 }
 #Ojwp-04 {
- background-image: url('/merman-prince/assets/img/main/01_起源頁/sec03/p04_background.png');
+ background-image: url('../img/main/01_起源頁/sec03/p04_background.png');
  color: #f0f0f0;
 }
 
@@ -686,13 +687,50 @@ button.choice:hover {
 
 
 #heart-section-04 {
-  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec04_background.png');
+  background-image: url('../img/main/01_起源頁/sec04_background.png');
 }
 
-#heart-section-05 .swiper-slide{
-  background-color: #3d6472;
+#heart-section-05 .swiper-slide {
+  background-color: #3e6674;
 }
 
+#heart-section-06-Cover {
+  background-image: url('../img/main/01_起源頁/sec06_background.png');
+  background-color: #2d2d2d;
+}
+
+
+#SmallTalk-03 .slide-content {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+#SmallTalk-03 #phrase1 {
+  top: 1.5rem;
+  left: 1.5rem;
+  position: absolute;
+  color: #f0f0f0;
+}
+
+
+#SmallTalk-03 #image01  {
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+
+}
+
+#SmallTalk-03 #image01 img {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+}
 
 
 
@@ -703,7 +741,7 @@ button.choice:hover {
    ====================== */
 
 .layer-lang-section-01 {
-  background-image: url('/merman-prince/assets/img/main/02_語言頁/sec01_background.png');
+  background-image: url('../img/main/02_語言頁/sec01_background.png');
   z-index: 201 ;
 }
 
@@ -760,7 +798,7 @@ button.choice:hover {
 
 
 .layer-struct-section-01 {
-  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec01_background.png');
+  background-image: url('../img/main/03_結構頁/sec01_background.png');
   z-index: 201 ;
 }
 
@@ -769,7 +807,7 @@ button.choice:hover {
 }
 
 #struct-section-02 {
-  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec02_background.png');
+  background-image: url('../img/main/03_結構頁/sec02_background.png');
   width: 100%;
   height: 100%;
   background-position: center;
@@ -973,13 +1011,13 @@ button.choice:hover {
 }
 
 #struct-section-05-card1 .before {
-  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec05/preview九宮格.png');
+  background-image: url('../img/main/03_結構頁/sec05/preview九宮格.png');
 }
 #struct-section-05-card2 .before {
-  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec05/preview小人.png');
+  background-image: url('../img/main/03_結構頁/sec05/preview小人.png');
 }
 #struct-section-05-card3 .before {
-  background-image: url('/merman-prince/assets/img/main/03_結構頁/sec05/preview中置.png');
+  background-image: url('../img/main/03_結構頁/sec05/preview中置.png');
 }
 
 #struct-section-05 .before {
@@ -1027,7 +1065,8 @@ button.choice:hover {
 
 
 #IG-murmur:hover {
-  cursor: url('/merman-prince/assets/img/全域/Cursor/精神狀態正確.png') 0 0, auto;  
+  cursor: url('../img/全域/Cursor/精神狀態正確.png') 0 0, auto;  
+  /* cursor: url('/merman-prince/assets/img/全域/Cursor/精神狀態正確.png') 0 0, auto;   */
 }
 #IG-murmur::after {
   content: "because it’s free";

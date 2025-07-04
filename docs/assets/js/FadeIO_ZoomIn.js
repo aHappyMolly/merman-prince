@@ -119,7 +119,7 @@ document.querySelectorAll('.animate-on-visible').forEach(el => observer.observe(
     // setTimeout(() => p1.classList.add('fade-out'), 3000);
 
     // Scence 2
-    setTimeout(() => img1.classList.add('fade-in'), 3000);
+    setTimeout(() => img1.classList.add('fade-in'), 2000);
     // setTimeout(() => img1.classList.add('fade-out'), 6000);
 
     // Scence 3（繼續加即可）

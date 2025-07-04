@@ -59,7 +59,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   
-  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_arrow.png');
+  background-image: url('../img/main/01_起源頁/sec01_arrow.png');
   z-index: 104;
 }
 
@@ -137,18 +137,18 @@
 }
 
 .layer-a {
-  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_background_Bottom.png');
+  background-image: url('../img/main/01_起源頁/sec01_background_Bottom.png');
   z-index: 101;
 }
 
  /* 要 Zoom 的那層 */
 .layer-b {
-  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_background_M.png');
+  background-image: url('../img/main/01_起源頁/sec01_background_M.png');
   z-index: 102;
 }
 
 .layer-c {
-  background-image: url('/merman-prince/assets/img/main/01_起源頁/sec01_background_Top.png');
+  background-image: url('../img/main/01_起源頁/sec01_background_Top.png');
   z-index: 103;
 }
 
