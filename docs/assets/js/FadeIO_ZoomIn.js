@@ -10,6 +10,7 @@ const observer = new IntersectionObserver((entries) => {
       if (type === "heart-lines") startHeartLineAnimation(entry.target);
       if (type === "phrase-series") startPhraseAnimation(entry.target);
       if (type === "lang-lines") startLangLineAnimation(entry.target);
+      if (type === "phrase-mix") startMixAnimation(entry.target);
 
       // observer.unobserve(entry.target); // 只需一次觸發,要重播就刪掉這行
     }
@@ -69,9 +70,9 @@ document.querySelectorAll('.animate-on-visible').forEach(el => observer.observe(
 
 
 
-    /* ===========
-       ▶ Phrase區
-       ============ */
+    /* =======================
+       ▶ Phrase區 ( 各區通用 )
+       ======================== */
 
 
   function startPhraseAnimation(container) {
@@ -94,6 +95,35 @@ document.querySelectorAll('.animate-on-visible').forEach(el => observer.observe(
 
     // Scence 3（繼續加即可）
     setTimeout(() => p3.classList.add('fade-in'), 6000);
+
+  }
+
+
+    /* ================================
+       ▶ Phrase + 背景大圖 ( 各區通用 )
+       ================================ */
+
+
+  function startMixAnimation(container) {
+    const p1 = container.querySelector('#phrase1');
+    const p2 = container.querySelector('#phrase2');
+    const p3 = container.querySelector('#phrase3');
+    const p4 = container.querySelector('#phrase4');
+    const img1 = container.querySelector('#image01');
+
+
+    // 秒數是接續ㄉ喔 //
+
+    // Scence 1: phrase1 fade-in & out
+    setTimeout(() => p1.classList.add('fade-in'), 500);
+    // setTimeout(() => p1.classList.add('fade-out'), 3000);
+
+    // Scence 2
+    setTimeout(() => img1.classList.add('fade-in'), 3000);
+    // setTimeout(() => img1.classList.add('fade-out'), 6000);
+
+    // Scence 3（繼續加即可）
+
 
   }
 
