@@ -113,9 +113,9 @@ function updateLevelPanel(titleLevel, unlockLevel) {
   if (panel) {
     const progressPercent = computeUnlockProgressPercent();
     panel.innerHTML = `
-      <p>🪐 Affiliation Updated: <strong>${affiliation}</strong></p>
-      <p>🎖 System Alignment: <strong>${titleLevel}-Level Researcher</strong></p>
-      <p>📊 Data Integration: <strong>${progressPercent}%</strong></p>
+      <p><strong>🪐 Affiliation Updated:</strong> ${affiliation}</p>
+      <p><strong>🎖 System Alignment:</strong> ${titleLevel}-Level Researcher</p>
+      <p><strong>📊 Data Integration:</strong> ${progressPercent}%</p>
     `;
   }
 }
@@ -143,7 +143,7 @@ function updateToolboxPanel() {
         // 如果是 false → 留空格子（讓你知道這格應該有但還沒出現）        
   if (panel) {
     panel.innerHTML = `
-      <p><strong>🔍 已蒐集碎片組合：</strong></p>
+      <p><strong>🔍 Inventory</strong></p>
       <div class="combo-grid"> 
       ${orderedCombos.map(name => `  
           <div class="combo-cell">
@@ -213,7 +213,7 @@ function checkRewards(unlockLevel, fragCode) {
     // window.userLogData.currentStatus = computeUnlockLevel()
 
 
-    displayFragmentPopup(fragCode, comboPair, titleLevel, unlockLevel);
+    // displayFragmentPopup(fragCode, comboPair, titleLevel, unlockLevel); //測試確認用的而已，正式運作不用顯示(來不及搞ㄌ~
     updateLevelPanel(titleLevel, unlockLevel);
     updateToolboxPanel();
 

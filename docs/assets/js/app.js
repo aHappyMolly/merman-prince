@@ -55,11 +55,11 @@ export function showPage(target) {
 
 function updateNavbar(target) {
   const displayNames = {
-    heart: 'Origin Page',
-    lang: 'Word Page',
-    struct: 'Structure Page',
-    reward: 'Reward',
-    select: 'Selection'
+    heart: '🫀 Origin Page',
+    lang: '🗺️ Word Page',
+    struct: '🌏 Structure Page',
+    reward: '🎁 Reward',
+    select: '🧋Selection'
   };
   const indicator = document.getElementById('pageIndicator');
   if (indicator) indicator.textContent = displayNames[target] || '---';
