@@ -112,7 +112,6 @@ font-size: 0.9em;
   transition: background 0.3s;
 
   font-weight: bold;
-  cursor: pointer;
   font-family: sans-serif;
   z-index: 9999;
 }
